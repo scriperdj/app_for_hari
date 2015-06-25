@@ -1,0 +1,142 @@
+<!-- Header _______________________________-->
+<%= render "layouts/header", :locals => {:home_class => '', 
+										 :gal_class => '',
+										 :pack_class =>'current-menu-item',
+										 :about_class => '',
+										 :contact_class => '',
+	                                     :body_class => 'post'} %>
+
+
+
+<!-- MAIN CONTENT SECTION  _____________________________________________-->
+	<section id="content" role="main">
+
+		<div class="featured-image-header">
+			<div id="">
+				<%= image_tag("photography/fullscreen11.jpg", :alt => "") %>
+			</div>
+		</div>
+
+		<div class="wrapper">
+			<!-- WYSIWYG starts here __-->
+			
+			<hr class="divider" />
+			<div class="column-grid column-grid-3">
+				<div class="column column-span-1 column-push-0 column-first">			
+					<table>
+						<thead>
+						<tr>
+							<th>
+								<p class="table-top">Package</p>
+								<h4><strong>Individidual portrait</strong></h4>
+								
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						
+						<tr>
+							<td>A photoshoot of approximately one to two hours</td>
+						</tr>
+						<tr>
+							<td>Approximately 50 exposures</td>
+						</tr>
+						<tr>
+							<td>A web gallery of proofs</td>
+						</tr>
+						<tr>
+							<td>A collection of 350 photos with blemishes touched up and color calibrated in a long-lasting and non-damageable synthetic, custom-made album</td>
+						</tr>
+						<tr>
+							<td>Edited output photos in a DVD</td>
+						</tr>
+						<tr>
+							<td><a class="button orange" href="contact.html">Contact us!</a></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="column column-span-1 column-push-0">			
+					<table class="bring-up">
+						<thead>
+						<tr>
+							<th>
+								<p class="table-top">Package</p>
+								<h4><strong>Engagement &amp; couples photography</strong></h4>
+								
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>A photoshoot of approximately one to two hours</td>
+						</tr>
+						<tr>
+							<td>Approximately 50 exposures</td>
+						</tr>
+						<tr>
+							<td>A web gallery of proofs</td>
+						</tr>
+						<tr>
+							<td>A collection of 350 photos with blemishes touched up and color calibrated in a long-lasting and non-damageable synthetic, custom-made album</td>
+						</tr>
+						<tr>
+							<td>Edited output photos in a DVD</td>
+						</tr>
+						<tr>
+							<td><a class="button red" href="contact.html">Contact us!</a></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="column column-span-1 column-push-0 column-last">			
+					<table>
+						<thead>
+						<tr>
+							<th>
+								<p class="table-top">Package</p>
+								<h4><strong>Family portrait</strong></h4>
+								
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>A photoshoot of approximately one to two hours</td>
+						</tr>
+						<tr>
+							<td>Approximately 50 exposures</td>
+						</tr>
+						<tr>
+							<td>A web gallery of proofs</td>
+						</tr>
+						<tr>
+							<td>A collection of 350 photos with blemishes touched up and color calibrated in a long-lasting and non-damageable synthetic, custom-made album</td>
+						</tr>
+						<tr>
+							<td>Edited output photos in a DVD</td>
+						</tr>
+						<tr>
+							<td><a class="button orange" href="contact.html">Contact us!</a></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- WYSIWYG ends here __-->
+		</div><!-- END .wrapper -->
+		
+	</section>
+
+<!-- Javascripts ______________________________________-->
+<%= javascript_include_tag "jquery.min.js" %>
+<%= javascript_include_tag "retina.min.js" %> 
+
+<!-- include image popups -->
+<%= javascript_include_tag "jquery.magnific-popup.min.js" %>
+
+<!-- include svg line drawing plugin -->
+<%= javascript_include_tag "jquery.lazylinepainter.min.js" %>
+
+<!-- include custom script -->
+<%= javascript_include_tag "scripts.js" %>

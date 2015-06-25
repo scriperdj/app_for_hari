@@ -1,0 +1,32 @@
+<body class="<%= locals[:body_class] %>">
+	 <!-- Loader _______________________________-->
+	<div class="loadreveal"></div>
+	<div id="loadscreen"><div id="loader"><span></span></div></div>
+	
+    <header role="banner" id="header">
+			
+		<div class="wrapper">
+
+			<!-- Logo __-->
+			<h1 id="logo">
+				<%= link_to logo, root_path, :id => "logo-svg-animated" %>
+			</h1>
+		
+			<!-- Main menu __-->
+			<nav id="mainmenu" role="navigation">
+			
+				<div id="menu-burger"><i class="icon-menu"></i></div>
+				
+				<div id="menu">
+					<ul>
+						<li class="<%= locals[:home_class] %>"><%= link_to("Home", root_path) %></li>
+						<li class="<%= locals[:gal_class] %>"><%= link_to("Galleries", "#") %></li>
+						<li class="<%= locals[:pack_class] %>"><%= link_to("Packages", packages_path)%></li>
+						<li class="<%= locals[:about_class] %>"><%= link_to("About", about_path) %></li>
+						<li class="<%= locals[:contact_class] %>"><%= link_to("Contact", contact_path) %></li>
+					</ul>
+				</div>
+			</nav>
+		</div> <!-- END .wrapper -->
+		
+	</header>

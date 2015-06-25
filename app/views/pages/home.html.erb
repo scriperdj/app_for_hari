@@ -1,0 +1,60 @@
+<!-- Header _______________________________-->
+<%= render "layouts/header", :locals => {:home_class => 'current-menu-item', 
+										 :gal_class => '',
+										 :pack_class =>'',
+										 :about_class => '',
+										 :contact_class => '',
+	                                     :body_class => 'home fullscreen'} %>
+
+		
+<!-- MAIN CONTENT SECTION  _____________________________________________-->
+	<section id="content" role="main">	
+		<div class="wrapper">
+			<!-- WYSIWYG -->
+			<div class="gallery fullscreen-gallery">
+				<figure class="post format-gallery gallery-item horizontal">
+					<header class='gallery-icon'>
+						<%= image_tag("photography/fullscreen11.jpg", :alt => "") %>
+					</header>	
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary">
+							<h2 class="big no-margin"><strong>HariPrasanth Prasa Photography</strong></h2>
+							<h2>Portrait & Candid Wedding Photographer</h2><br />
+							<div class="blog-oneline-carousel">
+								<h3>Latest</h3>
+								<div class="viewport">
+									<ul class="overview">
+										<li><p>12/08 &nbsp; Our current exhibition in Prague now open <a href="#">Read more</a></p></li>
+										<li><p>11/08 &nbsp; We had great success at Carnegie Hall <a href="#">Read more</a></p></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</figcaption>
+				</figure>
+			</div>
+
+			
+			<!-- END WYSIWYG -->
+			
+		</div><!-- END .wrapper -->
+	</section>
+	
+
+<!-- Javascripts ______________________________________-->
+<%= javascript_include_tag "jquery.min.js" %>
+<%= javascript_include_tag "retina.min.js" %>
+<!-- include Masonry -->
+<%= javascript_include_tag "isotope.pkgd.min.js" %>
+<!-- include image popups -->
+<%= javascript_include_tag "jquery.magnific-popup.min.js" %>
+<!-- include mousewheel plugins -->
+<%= javascript_include_tag "jquery.mousewheel.min.js" %>
+<!-- include carousel plugins -->
+<%= javascript_include_tag "jquery.tinycarousel.min.js" %>
+<!-- include svg line drawing plugin -->
+<%= javascript_include_tag "jquery.lazylinepainter.min.js" %>
+
+
+<!-- include custom script -->
+<%= javascript_include_tag "scripts.js" %>
