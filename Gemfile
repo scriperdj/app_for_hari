@@ -52,7 +52,7 @@ group :test do
 	gem "capybara", "~> 2.2.0"
 end
 
-group: :production do
+group :production do
 	gem 'rails_12factor'
 	gem 'rails_serve_static_assets'
 	gem 'rails_stdout_logging'
