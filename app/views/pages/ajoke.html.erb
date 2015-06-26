@@ -1,0 +1,86 @@
+<!-- Header _______________________________-->
+<%= render "layouts/header", :locals => {:home_class => '', 
+										 :gal_class => '',
+										 :pack_class =>'',
+										 :about_class => '',
+										 :contact_class => '',
+	                                     :body_class => 'blog post'} %>
+	                       
+<!-- MAIN CONTENT SECTION  _____________________________________________-->
+	<section id="content" role="main">
+
+		<div class="wrapper">
+	
+			<div id="blog-timeline">
+				<!-- Settings menu ___-->
+				<article class="active">
+					<div class="entry-meta">
+						<h2>Options  <i class="icon-cog"></i></h2>
+					</div>
+				</article>
+
+				<article>
+					<div class="entry-meta">
+						<h2>Gallaries  <i class="icon-pictures"></i></h2>
+					</div>
+				</article>
+
+				<article>
+					<div class="entry-meta">
+						<h2>Clients  <i class="icon-diamond"></i></h2>
+					</div>
+				</article>
+
+				<article>
+					<div class="entry-meta">
+						<h2>Schedule  <i class="icon-calendar"></i></h2>
+					</div>
+				</article>
+				
+				<article>
+					<div class="entry-meta">
+						<h2>Notifications  <i class="icon-lamp"></i></h2>
+					</div>
+				</article>
+				
+				<article>
+					<div class="entry-meta">
+						<h2>Profile  <i class="icon-clipboard"></i> </h2>
+					</div>
+				</article>
+
+				
+			</div><!-- END -->
+
+			
+			<!-- Shown selected page ___-->
+			<div id="blog-post">
+				<article class="entry post">
+					
+					<div class="entry-content">
+						<!-- Heading ___-->
+						<h3>Update Home page cover photo</h3>
+						<p>Browse photo</p>
+						<h3>Title</h3>
+					</div>
+
+				</article>
+			</div><!-- END #blog-post -->
+			
+			
+		</div><!-- END .wrapper -->
+		
+	</section>
+
+<!-- Javascripts ______________________________________-->
+<%= javascript_include_tag "/javascripts/jquery.min.js" %>
+<%= javascript_include_tag "/javascripts/retina.min.js" %> 
+
+<!-- include image popups -->
+<%= javascript_include_tag "/javascripts/jquery.magnific-popup.min.js" %>
+
+<!-- include svg line drawing plugin -->
+<%= javascript_include_tag "/javascripts/jquery.lazylinepainter.min.js" %>
+
+<!-- include custom script -->
+<%= javascript_include_tag "/javascripts/scripts.js" %>

@@ -7,9 +7,12 @@ Rails.application.routes.draw do
 
   get 'pages/contact'
   
+  get 'pages/ajoke'
+  
   match '/about', :to => 'pages#about', :via => [:get]
   match '/packages', :to => 'pages#packages', :via => [:get]
   match '/contact', :to => 'pages#contact', :via => [:get]
+  match '/ajoke', :to => 'pages#ajoke', :via => [:get]
   
   root :to => 'pages#home'
   
