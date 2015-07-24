@@ -85,5 +85,5 @@ test:
 production:
   <<: *default
   database: hari_web_production
-  username: hari_web
-  password: <%= ENV['HARI_WEB_DATABASE_PASSWORD'] %>
+  username: ndgsiqfzzfgaus
+  password: dBCnVZSTrCEhzwCbYq16lxaWz0
