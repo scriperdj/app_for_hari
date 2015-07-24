@@ -16,11 +16,11 @@ class PagesController < ApplicationController
     @title = "Contact me"
   end
 
-  def ajokes
+  def ajoke
     if current_user.admin?
       @title = "Admin Page"
     else
-      redirect_to destroy_user_session_path(current_user)
+      sign_out_and_redirect(current_user)
     end
   end
 end
