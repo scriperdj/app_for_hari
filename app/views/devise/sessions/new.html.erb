@@ -1,0 +1,59 @@
+<!-- Header _______________________________-->
+<%= render "layouts/header", :locals => {:home_class => '',
+										 :gal_class => '',
+										 :pack_class =>'',
+										 :about_class => '',
+										 :contact_class => '',
+	                                     :body_class => 'blog post'} %>
+
+<!-- MAIN CONTENT SECTION  _____________________________________________-->
+	<section id="content" role="main">
+
+		<!--<div class="featured-image-header">
+			<div id="">
+				<img src="imgs/photography/fullscreen01.jpg"alt="" />
+			</div>
+		</div>-->
+
+		<div class="wrapper">
+
+			<h2>Hey there!</h2>
+			<p class="small">Enter your details below to continue!</p>
+      <%= form_for resource, as: resource_name, url: session_path(resource_name), html:{class:"post-password-form", role: "form"}  do |f| %>
+        <%= render 'layouts/error_messages', :object => resource %>
+        <p>
+          <label for="user_email">
+            <span style="padding-right:25px;">Email:</span>
+            <%= f.email_field :email, autofocus: true, size:"20" %>
+          </label>
+        </p>
+        <p>
+          <label for="user_password">Password:
+            <%= f.password_field :password, autocomplete: "off", size:"20" %>
+          </label>
+          <%= f.submit "Log in" %>
+        </p>
+        <% if devise_mapping.rememberable? -%>
+          <p>
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </p>
+        <% end -%>
+      <% end %>
+
+		</div><!-- END .wrapper -->
+
+	</section>
+
+<!-- Javascripts ______________________________________-->
+
+
+<!-- include image popups -->
+<%= javascript_include_tag "/javascripts/jquery.magnific-popup.min.js" %>
+
+<!-- include svg line drawing plugin -->
+<%= javascript_include_tag "/javascripts/jquery.lazylinepainter.min.js" %>
+
+<!-- include custom script -->
+<%= javascript_include_tag "/javascripts/scripts.js" %>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

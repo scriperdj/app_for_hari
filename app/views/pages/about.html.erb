@@ -1,11 +1,11 @@
 <!-- Header _______________________________-->
-<%= render "layouts/header", :locals => {:home_class => '', 
+<%= render "layouts/header", :locals => {:home_class => '',
 										 :gal_class => '',
 										 :pack_class =>'',
 										 :about_class => 'current-menu-item',
 										 :contact_class => '',
 	                                     :body_class => 'post has-featured-image'} %>
-	                                     
+
 <!-- MAIN CONTENT SECTION  _____________________________________________-->
 	<section id="content" role="main">
 
@@ -18,7 +18,7 @@
 		<div class="wrapper">
 			<!-- WYSIWYG starts here __-->
 			<div class="column-grid column-grid-3">
-				<div class="column column-span-1 column-push-0 column-first">			
+				<div class="column column-span-1 column-push-0 column-first">
 					<h4><strong>Who Is HariPrasanth</strong></h4>
 				</div>
 				<div class="column column-span-2 column-push-0 column-last">
@@ -31,7 +31,7 @@
 			<hr class="divider" />
 
 			<div class="column-grid column-grid-3">
-				<div class="column column-span-1 column-push-0 column-first">			
+				<div class="column column-span-1 column-push-0 column-first">
 					<h4><strong>What does he do</strong></h4>
 				</div>
 				<div class="column column-span-2 column-push-0 column-last">
@@ -49,7 +49,7 @@
 			<hr class="divider" />
 
 			<div class="column-grid column-grid-3">
-				<div class="column column-span-1 column-push-0 column-first">			
+				<div class="column column-span-1 column-push-0 column-first">
 					<h4><strong>Camera & Lenses</strong></h4>
 				</div>
 				<div class="column column-span-2 column-push-0 column-last">
@@ -60,10 +60,10 @@
 			<hr class="divider" />
 
 			<div class="column-grid column-grid-3">
-				<div class="column column-span-1 column-push-0 column-first">			
+				<div class="column column-span-1 column-push-0 column-first">
 					<figure class="image-with-caption">
 						<%= image_tag("photography/team1.jpg", :alt => "") %>
-						
+
 						<figcaption>
 							<h2><strong>Johnny Walker</strong></h2>
 							<h5>OWNER & MANAGER</h5>
@@ -72,7 +72,7 @@
 						</figcaption>
 					</figure>
 				</div>
-				<div class="column column-span-1 column-push-0">			
+				<div class="column column-span-1 column-push-0">
 					<figure class="image-with-caption">
 						<%= image_tag("photography/team2.jpg", :alt => "") %>
 						<figcaption>
@@ -95,15 +95,14 @@
 					</figure>
 				</div>
 			</div>
-			
+
 			<!-- WYSIWYG ends here __-->
 		</div><!-- END .wrapper -->
-		
+
 	</section>
-	
+
 <!-- Javascripts ______________________________________-->
-<%= javascript_include_tag "/javascripts/jquery.min.js" %>
-<%= javascript_include_tag "/javascripts/retina.min.js" %> 
+
 
 <!-- include image popups -->
 <%= javascript_include_tag "/javascripts/jquery.magnific-popup.min.js" %>
@@ -113,5 +112,3 @@
 
 <!-- include custom script -->
 <%= javascript_include_tag "/javascripts/scripts.js" %>
-	
-

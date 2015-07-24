@@ -1,0 +1,8 @@
+<% unless object.errors.empty? %>
+	<script type="text/javascript">
+    console.log("Here???")
+		<% object.errors.full_messages.each do |msg| %>
+			toastr['error']('<%= msg %>');
+		<% end %>
+	</script>
+<% end %>

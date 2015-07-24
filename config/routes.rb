@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'pages/home'
 
   get 'pages/packages'
@@ -6,16 +7,16 @@ Rails.application.routes.draw do
   get 'pages/about'
 
   get 'pages/contact'
-  
-  get 'pages/ajoke'
-  
+
+  #get 'pages/ajoke'
+
   match '/about', :to => 'pages#about', :via => [:get]
   match '/packages', :to => 'pages#packages', :via => [:get]
   match '/contact', :to => 'pages#contact', :via => [:get]
   match '/ajoke', :to => 'pages#ajoke', :via => [:get]
-  
+
   root :to => 'pages#home'
-  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

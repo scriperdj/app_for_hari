@@ -28,7 +28,7 @@ gem "carrierwave", "~> 0.6.2"
 gem "mini_magick", "~> 3.4"
 gem 'gravatar_image_tag'
 gem 'will_paginate'
-
+gem 'devise'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

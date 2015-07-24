@@ -1,21 +1,21 @@
 <!-- Header _______________________________-->
-<%= render "layouts/header", :locals => {:home_class => 'current-menu-item', 
+<%= render "layouts/header", :locals => {:home_class => 'current-menu-item',
 										 :gal_class => '',
 										 :pack_class =>'',
 										 :about_class => '',
 										 :contact_class => '',
 	                                     :body_class => 'home fullscreen'} %>
 
-		
+
 <!-- MAIN CONTENT SECTION  _____________________________________________-->
-	<section id="content" role="main">	
+	<section id="content" role="main">
 		<div class="wrapper">
 			<!-- WYSIWYG -->
 			<div class="gallery fullscreen-gallery">
 				<figure class="post format-gallery gallery-item horizontal">
 					<header class='gallery-icon'>
 						<%= image_tag("photography/fullscreen11.jpg", :alt => "") %>
-					</header>	
+					</header>
 					<figcaption class='gallery-caption'>
 						<div class="entry-summary">
 							<h2 class="big no-margin"><strong>HariPrasanth Prasa Photography</strong></h2>
@@ -34,16 +34,15 @@
 				</figure>
 			</div>
 
-			
+
 			<!-- END WYSIWYG -->
-			
+
 		</div><!-- END .wrapper -->
 	</section>
-	
+
 
 <!-- Javascripts ______________________________________-->
-<%= javascript_include_tag "/javascripts/jquery.min.js" %>
-<%= javascript_include_tag "/javascripts/retina.min.js" %>
+
 <!-- include Masonry -->
 <%= javascript_include_tag "/javascripts/isotope.pkgd.min.js" %>
 <!-- include image popups -->

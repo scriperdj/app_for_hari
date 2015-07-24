@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: [:ajoke]
   def home
     @title = "Home"
   end
@@ -13,5 +14,13 @@ class PagesController < ApplicationController
 
   def contact
     @title = "Contact me"
+  end
+
+  def ajokes
+    if current_user.admin?
+      @title = "Admin Page"
+    else
+      redirect_to destroy_user_session_path(current_user)
+    end
   end
 end

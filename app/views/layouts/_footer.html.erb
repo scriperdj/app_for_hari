@@ -1,7 +1,18 @@
+<% unless notice.nil? or notice.empty? %>
+	<script type="text/javascript">
+		toastr['success']('<%= notice %>');
+	</script>
+<% end %>
+<% unless alert.nil? or alert.empty? %>
+	<script type="text/javascript">
+	console.log('<%=alert%>');
+		toastr['error']('<%= alert %>');
+	</script>
+<% end %>
 <footer id="footer" role="contentinfo">
 		<ul class="social-icons">
 			<li><a href="#" target="_blank" title="Flickr"><i class="icon-flickr"></i></a></li>
 			<li><a href="#" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
-			<li><a href="#" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>								
-		</ul>	
+			<li><a href="#" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>
+		</ul>
 </footer>
