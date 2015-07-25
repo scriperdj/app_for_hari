@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  devise_scope :user do
+    match '/users/sign_out' => 'devise/sessions#destroy', via: [:get, :delete]
+  end
+
   get 'pages/home'
 
   get 'pages/packages'
@@ -14,6 +19,7 @@ Rails.application.routes.draw do
   match '/packages', :to => 'pages#packages', :via => [:get]
   match '/contact', :to => 'pages#contact', :via => [:get]
   match '/ajoke', :to => 'pages#ajoke', :via => [:get]
+
 
   root :to => 'pages#home'
 
