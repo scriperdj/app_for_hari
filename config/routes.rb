@@ -1,24 +1,36 @@
 Rails.application.routes.draw do
+  get 'ajoke/options'
+
+  get 'ajoke/gallaries'
+
+  get 'ajoke/clients'
+
+  get 'ajoke/schedule'
+
+  get 'ajoke/notifications'
+
+  get 'ajoke/profile'
+
   devise_for :users
 
   devise_scope :user do
     match '/users/sign_out' => 'devise/sessions#destroy', via: [:get, :delete]
   end
 
-  get 'pages/home'
+  #get 'pages/home'
 
-  get 'pages/packages'
+  #get 'pages/packages'
 
-  get 'pages/about'
+  #get 'pages/about'
 
-  get 'pages/contact'
+  #get 'pages/contact'
 
   #get 'pages/ajoke'
 
   match '/about', :to => 'pages#about', :via => [:get]
   match '/packages', :to => 'pages#packages', :via => [:get]
   match '/contact', :to => 'pages#contact', :via => [:get]
-  match '/ajoke', :to => 'pages#ajoke', :via => [:get]
+  match '/ajoke', :to => 'ajoke#options', :via => [:get]
 
 
   root :to => 'pages#home'

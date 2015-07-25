@@ -1,0 +1,97 @@
+<!DOCTYPE html >
+<html>
+   <head>
+      <meta charset="utf-8">
+
+     <link rel="Shortcut Icon" type="image/ico" href="favicon.ico" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+     <title><%= title %></title>
+     <%= csrf_meta_tag %>
+     <%= render "layouts/stylesheets" %>
+   </head>
+  <!-- Header _______________________________-->
+  <%= render "layouts/header", :locals => {} %>
+
+  <!-- MAIN CONTENT SECTION  _____________________________________________-->
+	<section id="content" role="main">
+
+		<div class="wrapper">
+
+			<div id="blog-timeline">
+        <% uri = URI.parse(request.original_url) %>
+        <!-- Settings menu ___-->
+				<article class="<%= (uri.path === ajoke_path)? "active" : (uri.path === ajoke_options_path)? "active" : "" %>">
+					<div class="entry-meta">
+						<a href="/ajoke/options" style="<%= (uri.path === ajoke_path)? "" : (uri.path === ajoke_options_path)? "" : "color:inherit;" %>"><h2>Options  <i class="icon-cog"></i></h2></a>
+					</div>
+				</article>
+
+				<article class="<%= (uri.path === ajoke_gallaries_path)? "active" : "" %>">
+					<div class="entry-meta">
+						<a href="/ajoke/gallaries" style="<%= (uri.path === ajoke_gallaries_path)? "" : "color:inherit;" %>"><h2>Gallaries  <i class="icon-pictures"></i></h2></a>
+					</div>
+				</article>
+
+				<article class="<%= (uri.path === ajoke_clients_path)? "active" : "" %>">
+					<div class="entry-meta">
+						<a href="/ajoke/clients" style="<%= (uri.path === ajoke_clients_path)? "" : "color:inherit;" %>"><h2>Clients  <i class="icon-diamond"></i></h2></a>
+					</div>
+				</article>
+
+				<article class="<%= (uri.path === ajoke_schedule_path)? "active" : "" %>">
+					<div class="entry-meta">
+						<a href="/ajoke/schedule" style="<%= (uri.path === ajoke_schedule_path)? "" : "color:inherit;" %>"><h2>Schedule  <i class="icon-calendar"></i></h2></a>
+					</div>
+				</article>
+
+				<article class="<%= (uri.path === ajoke_notifications_path)? "active" : "" %>">
+					<div class="entry-meta">
+						<a href="/ajoke/notifications" style="<%= (uri.path === ajoke_notifications_path)? "" : "color:inherit;" %>"><h2>Notifications  <i class="icon-lamp"></i></h2></a>
+					</div>
+				</article>
+
+				<article class="<%= (uri.path === ajoke_profile_path)? "active" : "" %>">
+					<div class="entry-meta">
+						<a href="/ajoke/profile" style="<%= (uri.path === ajoke_profile_path)? "" : "color:inherit;" %>"><h2>Profile  <i class="icon-clipboard"></i> </h2></a>
+					</div>
+				</article>
+
+
+			</div><!-- END -->
+
+
+			<!-- Shown selected page ___-->
+			<div id="blog-post">
+				<article class="entry post">
+
+					<div class="entry-content">
+            <%= yield %>
+					</div>
+
+				</article>
+			</div><!-- END #blog-post -->
+
+
+		</div><!-- END .wrapper -->
+
+	</section>
+
+<!-- Javascripts ______________________________________-->
+
+
+<!-- include image popups -->
+<%= javascript_include_tag "/javascripts/jquery.magnific-popup.min.js" %>
+
+<!-- include svg line drawing plugin -->
+<%= javascript_include_tag "/javascripts/jquery.lazylinepainter.min.js" %>
+
+<!-- include custom script -->
+<%= javascript_include_tag "/javascripts/scripts.js" %>
+
+<%= render "layouts/footer"  %>
+<%= debug(params) if Rails.env.development? %>
+
+</body>
+
+</html>
