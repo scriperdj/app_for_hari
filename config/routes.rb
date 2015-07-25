@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users do
-    get '/sign_out', to: 'pages#about'
-  end
+  devise_for :users
   get 'pages/home'
 
   get 'pages/packages'
