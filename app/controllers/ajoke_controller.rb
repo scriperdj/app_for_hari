@@ -29,7 +29,7 @@ class AjokeController < ApplicationController
   private
 
     def admin_check
-      unless current_user.admin? 
+      unless current_user.admin?
         sign_out_and_redirect(current_user)
       end
     end
