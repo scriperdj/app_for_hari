@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Additional gems
 gem "carrierwave", "~> 0.6.2"
-gem "mini_magick", "~> 3.4"
+gem "rmagick"
 gem 'gravatar_image_tag'
 gem 'will_paginate'
 gem 'devise'

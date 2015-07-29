@@ -1,4 +1,105 @@
 <!-- Heading ___-->
-<h3>Update Home page cover photo</h3>
-<p>Browse photo</p>
-<h3>Title</h3>
+<%= form_for :picture, url: ajoke_save_cover_path , :html => { :id => "fileupload"  } do |f| %>
+<div class=" fileupload-buttonbar">
+    <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
+    <div class="column-grid column-grid-5">
+      <div class="column column-span-2 column-push-0 column-first">
+      <p>
+      <span>Change Home page cover</span>
+      </p>
+      </div>
+      <div class="column column-span-3 column-push-0 column-last">
+        <input id="picture_image" type="file" style="visibility: hidden;height: 0;width: 0;display: block;" name="picture[image]">
+        <input class="button blue" type="button" value="Browse" id="browse" />
+      </div>
+    </div>
+
+
+  </div>
+
+<% end %>
+<script>
+  var fileUploadErrors = {
+    maxFileSize: 'File is too big',
+    minFileSize: 'File is too small',
+    acceptFileTypes: 'Filetype not allowed',
+    maxNumberOfFiles: 'Max number of files exceeded',
+    uploadedBytes: 'Uploaded bytes exceed file size',
+    emptyResult: 'Empty file upload result'
+  };
+</script>
+
+
+
+<script id="template-download" type="text/html">
+  {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
+  <tr class="template-download nofade">
+    {% if (file.error) { %}
+    <td></td>
+    <td class="name">{%=file.name%}</td>
+    <td class="size">{%=o.formatFileSize(file.size)%}</td>
+    <td class="error" colspan="2"><span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}</td>
+    {% } else { %}
+    <td class="preview">{% if (file.thumbnail_url) { %}
+      <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery"><img src="{%=file.thumbnail_url%}"></a>
+    {% } %}</td>
+    <td class="name">
+      <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}">{%=file.name%}</a>
+    </td>
+    <td class="size">{%=o.formatFileSize(file.size)%}</td>
+    <td colspan="2"></td>
+    {% } %}
+    <td class="delete">
+    <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"><%= t('photos.template.delete') %></button>
+    <input type="checkbox" name="delete" value="1">
+    </td>
+  </tr>
+  {% } %}
+</script>
+<script>
+$(function () {
+    $('#browse').click(function() { $('#picture_image').click(); });
+
+    function update(coords)
+    {
+      $('#picture_crop_x').val(coords.x)
+      $('#picture_crop_y').val(coords.y)
+      $('#picture_crop_w').val(coords.w)
+      $('#picture_crop_h').val(coords.h)
+    };
+
+    $('#cropbox').Jcrop({
+      boxWidth: 770,
+      boxHeight: 433,
+      onSelect: update,
+      onChange: update
+    });
+
+
+    'use strict';
+
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload({
+      autoUpload: true,
+
+
+    completed: function(e, data) {
+      toastr['error']('Uploaded cover!');
+      console.log(data.result[0].url);
+      $('a[href^="' + data.result[0].url + '"]').slimbox();
+    }
+
+
+  });
+
+  $("#fileupload").bind("fileuploaddone", function (e, data) {
+    toastr['success']("Cover image updated with " + data.result[0]["name"]);
+    //for (d in data.result[0]){
+    $.each(data.result[0], function(key, val) {
+      console.log("key=" + key + ", val=" + val);
+    });
+
+});
+});
+
+</script>

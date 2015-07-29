@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+
   devise_scope :user do
     match '/users/sign_out' => 'devise/sessions#destroy', via: [:get, :delete]
   end
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
   match '/packages', :to => 'pages#packages', :via => [:get]
   match '/contact', :to => 'pages#contact', :via => [:get]
   match '/ajoke', :to => 'ajoke#options', :via => [:get]
+  match '/ajoke/save_cover', :to => 'ajoke#save_cover', :via => [:post, :put]
 
 
   root :to => 'pages#home'
