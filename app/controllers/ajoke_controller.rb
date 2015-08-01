@@ -10,20 +10,22 @@ class AjokeController < ApplicationController
 
   def save_cover
     @gallery = Gallery.find(1)
+    @pic = Picture.find(22)
     p_attr = params[:picture]
     p_attr[:image] = params[:picture][:image].first if params[:picture][:image].class == Array
 
     unlocked_params = ActiveSupport::HashWithIndifferentAccess.new(p_attr)
-    @picture = @gallery.pictures.build(unlocked_params)
-    if @picture.save
+    #@picture = @gallery.pictures.build(unlocked_params)
+
+    if @pic.update_attributes(unlocked_params)
       respond_to do |format|
         format.html {
-          render :json => [@picture.to_jq_upload].to_json,
+          render :json => [@pic.to_jq_upload].to_json,
           :content_type => 'text/html',
           :layout => false
         }
         format.json {
-          render :json => [@picture.to_jq_upload].to_json
+          render :json => [@pic.to_jq_upload].to_json
         }
       end
     else

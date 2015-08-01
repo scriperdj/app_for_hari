@@ -4,7 +4,7 @@ class Picture < ActiveRecord::Base
   belongs_to :gallery
   mount_uploader :image, CoverUploader
   #validates :image, :presence => true
-  after_update :crop_image
+
   def create
     @picture = Picture.new(picture_params)
   end
@@ -19,14 +19,6 @@ class Picture < ActiveRecord::Base
     }
   end
 
-  def crop_image
-      image.recreate_versions! if crop_x.present?
-      current_version = self.image.current_path
-      large_version = "#{Rails.root}/public" + self.image.versions[:large].to_s
-
-      FileUtils.rm(current_version)
-      FileUtils.cp(large_version, current_version)
-    end
 
   private
 

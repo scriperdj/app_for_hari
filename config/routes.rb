@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'jqtest/index'
+
   get 'ajoke/options'
 
   get 'ajoke/gallaries'
