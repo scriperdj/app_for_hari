@@ -8,99 +8,154 @@
       <span>Change Home page cover</span><br/>
       <small>Aspect ratio : 1600 x 1100 px</small>
       </p>
-      <div id="progress">
-        <div class="bar" style="width: 0%;height: 18px;background: green;"></div>
-      </div>
       </div>
       <div class="column column-span-3 column-push-0 column-last">
         <input id="picture_image" type="file" style="visibility: hidden;height: 0;width: 0;display: block;" name="picture[image]">
         <input class="button blue" type="button" value="Browse" id="browse" />
       </div>
+      <!-- The table listing the files available for upload/download -->
+      <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
     </div>
 
 
   </div>
 
 <% end %>
-
-<script>
-  var fileUploadErrors = {
-    maxFileSize: 'File is too big',
-    minFileSize: 'File is too small',
-    acceptFileTypes: 'Filetype not allowed',
-    maxNumberOfFiles: 'Max number of files exceeded',
-    uploadedBytes: 'Uploaded bytes exceed file size',
-    emptyResult: 'Empty file upload result'
-  };
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
 </script>
-
-
-
-<script id="template-download" type="text/html">
-  {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
-  <tr class="template-download nofade">
-    {% if (file.error) { %}
-    <td></td>
-    <td class="name">{%=file.name%}</td>
-    <td class="size">{%=o.formatFileSize(file.size)%}</td>
-    <td class="error" colspan="2"><span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}</td>
-    {% } else { %}
-    <td class="preview">{% if (file.thumbnail_url) { %}
-      <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery"><img src="{%=file.thumbnail_url%}"></a>
-    {% } %}</td>
-    <td class="name">
-      <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}">{%=file.name%}</a>
-    </td>
-    <td class="size">{%=o.formatFileSize(file.size)%}</td>
-    <td colspan="2"></td>
-    {% } %}
-    <td class="delete">
-    <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"><%= t('photos.template.delete') %></button>
-    <input type="checkbox" name="delete" value="1">
-    </td>
-  </tr>
-  {% } %}
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.deleteUrl) { %}
+                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" name="delete" value="1" class="toggle">
+            {% } else { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
 </script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/javascripts/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/javascripts/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/javascripts/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/javascripts/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/javascripts/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/javascripts/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="/javascripts/jquery.fileupload-ui.js"></script>
+
 <script>
 $(function () {
     $('#browse').click(function() { $('#picture_image').click(); });
-
-    function update(coords)
-    {
-      $('#picture_crop_x').val(coords.x)
-      $('#picture_crop_y').val(coords.y)
-      $('#picture_crop_w').val(coords.w)
-      $('#picture_crop_h').val(coords.h)
-    };
-
-
 
 
     'use strict';
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
-      autoUpload: true,
+      //url : '<%= ajoke_save_cover_path %>'
+      autoUpload: true
 
-    progressall: function (e, data) {
+  /*  progressall: function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('#progress .bar').css(
+          $('#progress .progress-bar').css(
               'width',
               progress + '%'
           );
-    }
+    } */
 
 
   });
 
-  $("#fileupload").bind("fileuploaddone", function (e, data) {
-    toastr['success']("Cover image updated with " + data.result[0]["name"]);
-    //for (d in data.result[0]){
-    /*$.each(data.result[0], function(key, val) {
-      console.log("key=" + key + ", val=" + val);
-    }); */
 
-});
+  // Load existing files:
+    $('#fileupload').addClass('fileupload-processing');
+    $.ajax({
+            // Uncomment the following to send cross-domain cookies:
+            //xhrFields: {withCredentials: true},
+            url: $('#fileupload').fileupload('option', 'url'),
+            dataType: 'json',
+            context: $('#fileupload')[0]
+        }).always(function () {
+            $(this).removeClass('fileupload-processing');
+        }).done(function (result) {
+            $(this).fileupload('option', 'done')
+                .call(this, $.Event('done'), {result: result});
+        });
+
+  $("#fileupload").bind("fileuploaddone", function (e, data) {
+    toastr['success']("Cover image updated with " + data.result.files[0].name);
+  });
 });
 
 </script>

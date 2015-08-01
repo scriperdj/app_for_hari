@@ -9,6 +9,9 @@
      <title><%= title %></title>
      <%= csrf_meta_tag %>
      <%= render "layouts/stylesheets" %>
+     <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+      <link rel="stylesheet" href="/stylesheets/jquery.fileupload.css">
+      <link rel="stylesheet" href="/stylesheets/jquery.fileupload-ui.css">
    </head>
   <!-- Header _______________________________-->
   <%= render "layouts/header", :locals => {} %>

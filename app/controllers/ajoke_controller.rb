@@ -20,12 +20,12 @@ class AjokeController < ApplicationController
     if @pic.update_attributes(unlocked_params)
       respond_to do |format|
         format.html {
-          render :json => [@pic.to_jq_upload].to_json,
+          render :json => @pic.to_jq_upload,
           :content_type => 'text/html',
           :layout => false
         }
         format.json {
-          render :json => [@pic.to_jq_upload].to_json
+          render :json => @pic.to_jq_upload
         }
       end
     else

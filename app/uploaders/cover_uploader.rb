@@ -10,6 +10,10 @@ class CoverUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::RailsHelper
   # include Sprockets::Helpers::IsolatedHelper
   process :resize_to_fit => [1600, -1]
+
+  version :thumb do
+    resize_to_fill(100, 100)
+  end
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
