@@ -10,7 +10,7 @@ class AjokeController < ApplicationController
 
   def save_cover
     @gallery = Gallery.find(1)
-    @pic = Picture.find(22)
+    @pic = Picture.where(gallery_id: @gallery).first
     p_attr = params[:picture]
     p_attr[:image] = params[:picture][:image].first if params[:picture][:image].class == Array
 
