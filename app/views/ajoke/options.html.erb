@@ -1,4 +1,97 @@
 <!-- Heading ___-->
-<h3>Update Home page cover photo</h3>
-<p>Browse photo</p>
-<h3>Title</h3>
+<%= form_for :picture, url: ajoke_save_cover_path , :html => { :id => "fileupload"  } do |f| %>
+<div class=" fileupload-buttonbar">
+    <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
+    <div class="column-grid column-grid-5">
+      <div class="column column-span-2 column-push-0 column-first">
+      <p>
+      <span>Change Home page cover</span><br/>
+      <small>Aspect ratio : 1600 x 1100 px</small>
+      </p>
+      <!-- The global progress state -->
+            <div id="progressbar" class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+      </div>
+      <div class="column column-span-3 column-push-0 column-last">
+        <input id="picture_image" type="file" style="visibility: hidden;height: 0;width: 0;display: block;" name="picture[image]">
+        <input class="button blue" type="button" value="Browse" id="browse" />
+      </div>
+      <!-- The table listing the files available for upload/download -->
+      <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+    </div>
+
+
+  </div>
+
+<% end %>
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/javascripts/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="/javascripts/load-image.all.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/javascripts/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/javascripts/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/javascripts/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/javascripts/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/javascripts/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="/javascripts/jquery.fileupload-ui.js"></script>
+
+<script>
+$(function () {
+    $("#progressbar").hide();
+    $('#browse').click(function() { $('#picture_image').click(); $("#progressbar").show(); });
+
+
+    'use strict';
+
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload({
+      //url : '<%= ajoke_save_cover_path %>'
+      autoUpload: true
+
+  /*  progressall: function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          $('#progress .progress-bar').css(
+              'width',
+              progress + '%'
+          );
+    } */
+
+
+  });
+
+
+  // Load existing files:
+    $('#fileupload').addClass('fileupload-processing');
+    $.ajax({
+            // Uncomment the following to send cross-domain cookies:
+            //xhrFields: {withCredentials: true},
+            url: $('#fileupload').fileupload('option', 'url'),
+            dataType: 'json',
+            context: $('#fileupload')[0]
+        }).always(function () {
+            $(this).removeClass('fileupload-processing');
+        }).done(function (result) {
+            $(this).fileupload('option', 'done')
+                .call(this, $.Event('done'), {result: result});
+        });
+
+  $("#fileupload").bind("fileuploaddone", function (e, data) {
+    toastr['success']("Cover image updated with <img height='40' width='40' style='float:left;padding-right:5px' src='" + data.result.files[0].thumbnailUrl + "' />"+ data.result.files[0].name );
+    $("#progressbar").hide();
+  });
+});
+
+</script>

@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:ajoke]
   def home
+    gallery = Gallery.find(1)
+    @pic = Picture.where(gallery_id: gallery).first
     @title = "Home"
   end
 

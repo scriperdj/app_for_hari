@@ -1,2 +1,115 @@
-<h1>Ajoke#gallaries</h1>
-<p>Find me in app/views/ajoke/gallaries.html.erb</p>
+<div class="whistles whistles-toggle">
+					<h3 style="float:right;" class="whistle-title">Create new gallery</h3>
+					<div class="whistle-content" >
+            <form action="#" method="post" id="commentform" class="comment-form" novalidate>
+                    <div style="width:30%;float:left;padding-right:20px;">
+  									<p class="comment-form-author"><label for="author">Gallery Name <span class="required">*</span></label> <input id="gallery" name="gallery" type="text" placeholder="e.g. Tanu weds Manu" size="20"  /></p>
+                  </div>
+                  <div style="width:30%;float:left;">
+  									<p class="comment-form-email"><label for="email">Date of event <span class="required">*</span></label> <input id="event-date" name="event-date" type="text" placeholder="Pick a date" size="30"  /></p>
+                  </div>
+
+  									<p class="form-submit" style="padding-top:35px;padding-left:20px;">
+  										<input name="submit" type="submit" id="submit" value="Create" />
+
+  									</p>
+
+  								</form>
+          </div>
+
+				</div>
+
+
+
+
+			<!-- Gallery __-->
+			<div class="gallery masonry-gallery">
+
+				<figure class="gallery-item">
+					<header class='gallery-icon'>
+						<a href="gallery-masonry.html"><img src="/images/photography/landscape01-600x400.jpg"alt="" /></a>
+					</header>
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary">
+							<h3>Masonry Gallery</h3>
+							<p>May 2015</p>
+						</div>
+					</figcaption>
+				</figure>
+        <p class="small justifyright" style="width: 31.3%;position: relative;"><em>Add anything under your images, for example a nice long image caption.</em></p>
+
+				<figure class="gallery-item">
+					<header class='gallery-icon'>
+						<a href="gallery-horizontal.html"><img src="/images/photography/landscape02-600x400.jpg"alt="" /></a>
+					</header>
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary">
+							<h3>Horizontal Gallery</h3>
+							<p>May 2015</p>
+						</div>
+					</figcaption>
+				</figure>
+
+				<figure class="gallery-item">
+					<header class='gallery-icon'>
+						<a href="gallery-vertical.html"><img src="/images/photography/landscape03-600x400.jpg"alt="" /></a>
+					</header>
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary">
+							<h3>Vertical Gallery</h3>
+							<p>May 2015</p>
+						</div>
+					</figcaption>
+				</figure>
+
+				<figure class="gallery-item">
+					<header class='gallery-icon'>
+						<a href="gallery-fullscreen.html"><img src="/images/photography/landscape04-600x400.jpg"alt="" /></a>
+					</header>
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary">
+							<h3>Fullscreen Gallery</h3>
+							<p>May 2015</p>
+						</div>
+					</figcaption>
+				</figure>
+
+				<figure class="gallery-item">
+					<header class='gallery-icon'>
+						<a href="gallery-fullscreen-kenburns.html"><img src="/images/photography/landscape09-600x400.jpg"alt="" /></a>
+					</header>
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary">
+							<h3>KenBurns Gallery</h3>
+							<p>May 2015</p>
+						</div>
+					</figcaption>
+				</figure>
+
+				<figure class="gallery-item">
+					<header class='gallery-icon'>
+						<a href="index.html"><img src="/images/photography/landscape06-600x400.jpg"alt="" /></a>
+					</header>
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary">
+							<h3>Video Gallery</h3>
+							<p>May 2015</p>
+						</div>
+					</figcaption>
+				</figure>
+
+			</div>
+      <!-- Javascripts ______________________________________-->
+
+<script src="/javascripts/retina.min.js"></script>
+<!-- include Masonry -->
+<script src="/javascripts/isotope.pkgd.min.js"></script>
+<!-- include accordion / tabs plugin -->
+<script src="/javascripts/whistles.min.js"></script>
+<!-- include mousewheel plugins -->
+<script src="/javascripts/jquery.mousewheel.min.js"></script>
+<script>
+$(function() {
+  $('#event-date').datepicker();
+});
+</script>
