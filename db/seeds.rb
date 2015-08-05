@@ -9,5 +9,5 @@ User.create(email:"admin@haristudio.com", password:"haristudio", admin:true)
 gallery = Gallery.create(name:"home_cover")
 picture = Picture.create(gallery_id: gallery.id)
 #picture.image = File.open("/home/scriperdj/rails_projects/hari_web/public/images/photography/fullscreen11.jpg")
-picture.image = File.open("/public/images/photography/fullscreen11.jpg")
+picture.image = File.open("/app/public/images/photography/fullscreen11.jpg")
 picture.save!
