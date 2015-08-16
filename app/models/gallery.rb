@@ -1,6 +1,8 @@
 class Gallery < ActiveRecord::Base
-
+  validates :name, :presence => true
+  validates :event_date, :presence => true
   has_many :pictures, :dependent => :destroy
+  has_many :images, :dependent => :destroy
 
   private
 

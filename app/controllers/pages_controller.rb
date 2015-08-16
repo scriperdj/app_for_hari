@@ -6,6 +6,15 @@ class PagesController < ApplicationController
     @title = "Home"
   end
 
+  def galleries
+    @title = "Galleries"
+    @gal = Gallery.where("id != 1")
+    @gals = @gal.order(created_at: :desc)
+    @galleries = @gals.paginate(:page => params[:page],:per_page => 6)
+  end
+
+
+
   def packages
     @title = "Photography Packages"
   end

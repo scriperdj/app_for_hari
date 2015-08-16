@@ -12,6 +12,32 @@
      <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
       <link rel="stylesheet" href="/stylesheets/jquery.fileupload.css">
       <link rel="stylesheet" href="/stylesheets/jquery.fileupload-ui.css">
+
+      <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+      <script src="/javascripts/vendor/jquery.ui.widget.js"></script>
+      
+      <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+      <script src="/javascripts/load-image.all.min.js"></script>
+      <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+      <script src="/javascripts/jquery.iframe-transport.js"></script>
+      <!-- The basic File Upload plugin -->
+      <script src="/javascripts/jquery.fileupload.js"></script>
+      <!-- The File Upload processing plugin -->
+      <script src="/javascripts/jquery.fileupload-process.js"></script>
+      <!-- The File Upload image preview & resize plugin -->
+      <script src="/javascripts/jquery.fileupload-image.js"></script>
+      <!-- The File Upload validation plugin -->
+      <script src="/javascripts/jquery.fileupload-validate.js"></script>
+      <!-- The File Upload user interface plugin -->
+      <script src="/javascripts/jquery.fileupload-ui.js"></script>
+
+      <!-- include Masonry -->
+      <script src="/javascripts/isotope.pkgd.min.js"></script>
+      <style>
+        div.entry-summary a:hover {
+          color:#F7F6F5;
+        }
+      </style>
    </head>
   <!-- Header _______________________________-->
   <%= render "layouts/header", :locals => {} %>
@@ -30,9 +56,9 @@
 					</div>
 				</article>
 
-				<article class="<%= (uri.path === ajoke_gallaries_path)? "active" : "" %>">
+				<article class="<%= (uri.path === ajoke_galleries_path)? "active" : (uri.path == ajoke_upload_images_path)? "active" : "" %>">
 					<div class="entry-meta">
-						<a href="/ajoke/gallaries" style="<%= (uri.path === ajoke_gallaries_path)? "" : "color:inherit;" %>"><h2>Gallaries  <i class="icon-pictures"></i></h2></a>
+						<a href="/ajoke/galleries" style="<%= (uri.path === ajoke_galleries_path)? "" : (uri.path == ajoke_upload_images_path)? "" : "color:inherit;" %>"><h2>Galleries  <i class="icon-pictures"></i></h2></a>
 					</div>
 				</article>
 
