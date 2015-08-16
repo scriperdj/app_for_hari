@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'nprogress-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -29,7 +30,7 @@ gem "carrierwave", "~> 0.6.2"
 #gem "rmagick"
 gem "mini_magick", "~> 3.4"
 gem 'gravatar_image_tag'
-gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'devise'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

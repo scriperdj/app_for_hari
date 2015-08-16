@@ -1,0 +1,18 @@
+<div  class="gallery masonry-gallery">
+<% @photos.each do |photo| %>
+  <figure class="gallery-item" style="position: absolute; left: 0px; top: 0px;">
+    <header class='gallery-icon'>
+      <a ><img id="galimg" src="<%= photo.image.disp %>" alt="" /></a>
+    </header>
+    <figcaption class='gallery-caption'>
+      <div  class="entry-summary">
+        <p id='cover_img' data-id='<%= photo.id %>' ><a href="#" >Set as gallery cover</a></p>
+      </div>
+    </figcaption>
+  </figure>
+<% end %>
+<% if @photos.length == 0 %>
+<p style="text-align:center;">No photos added yet <p>
+<% end%>
+</div>
+<div style="text-align:center;padding:10px"> <%= will_paginate @photos %> </div>

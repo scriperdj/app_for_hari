@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery-ui/datepicker
-
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .

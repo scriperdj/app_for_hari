@@ -1,0 +1,105 @@
+<!-- Header _______________________________-->
+<%= render "layouts/header", :locals => {:home_class => '',
+										 :gal_class => 'current-menu-item',
+										 :pack_class =>'',
+										 :about_class => '',
+										 :contact_class => '',
+	                                     :body_class => ''} %>
+
+<!-- MAIN CONTENT SECTION  _____________________________________________-->
+<section id="content" role="main">
+	<div class="wrapper">
+		<h2>Photo Galleries</h2>
+		<div style="text-align:center;padding:10px"> <%= will_paginate @galleries %> </div>
+		<div  class="gallery masonry-gallery">
+		<% @galleries.each do |gal| %>
+			<% unless gal.cover.nil?
+					pic = gal.images.find(gal.cover)
+				else
+					pic = gal.images.last
+				end %>
+
+			<figure id="gals" class="gallery-item" style="position: absolute; left: 0px; top: 0px;">
+				<header class='gallery-icon'>
+					<a class="galimg" href="<%=view_gallery_path %>?gallery=<%=gal.id %>" ><img data-id='<%= gal.id %>' src="<%= ( pic.nil? )? '' : pic.image.disp %>" alt="" /></a>
+				</header>
+				<figcaption class='gallery-caption'>
+					<div  class="entry-summary">
+						<h3><%= gal.name %></h3>
+						<p id='img'><%= gal.event_date %></p>
+					</div>
+				</figcaption>
+			</figure>
+		<% end %>
+		</div>
+		<div style="text-align:center;padding:10px"> <%= will_paginate @galleries %> </div>
+
+
+																					</div><!-- END .wrapper -->
+																				</section>
+
+<!-- Javascripts ______________________________________-->
+
+<!-- include Masonry -->
+<script src="/javascripts/isotope.pkgd.min.js"></script>
+<!-- include image popups -->
+<script src="/javascripts/jquery.magnific-popup.min.js"></script>
+<!-- include mousewheel plugins -->
+<script src="/javascripts/jquery.mousewheel.min.js"></script>
+<!-- include carousel plugins -->
+<script src="/javascripts/jquery.tinycarousel.min.js"></script>
+<!-- include svg line drawing plugin -->
+<script src="/javascripts/jquery.lazylinepainter.min.js"></script>
+<!-- include custom script -->
+<script src="/javascripts/scripts.js"></script>
+<script>
+$(function() {
+
+	$(".galimg").click(function(e){
+		e.preventDefault();
+		var link = $(this).attr( 'href' );
+		location.href=link;
+});
+
+
+
+	// masonry gallery
+	var $masonry_gallery = jQuery('.masonry-gallery.gallery');
+	if ( $masonry_gallery.length > 0 ) {
+
+		$masonry_gallery.each( function(index, element) {
+			var $masonry_items = $(element).find('.gallery-item');
+
+			// set masonry layout
+			$(element).isotope({
+				masonry: { columnWidth: $(element).find('.gallery-item')[0] },
+				itemSelector: '.gallery-item'
+			});
+			$(element).isotope('layout');
+
+			// filtering
+			jQuery('#gallery-filter li a').on('click', function(){
+				jQuery('#gallery-filter li a').removeClass('active');
+				jQuery(this).addClass('active');
+				var selector = jQuery(this).attr('data-filter');
+				$masonry_gallery.isotope({ filter: selector });
+				return false;
+			});
+
+			// changing layout
+			jQuery('#grid-changer li a').on('click', function(){
+				jQuery('#grid-changer li a').removeClass('active');
+				jQuery(this).toggleClass('active');
+
+				$masonry_items.removeClass('col-3');
+				$masonry_items.removeClass('col-4');
+				$masonry_items.removeClass('col-5');
+				$masonry_items.toggleClass(jQuery(this).closest('li').attr('class'));
+				$masonry_gallery.isotope('layout');
+			});
+
+		});
+	}
+
+});
+</script>

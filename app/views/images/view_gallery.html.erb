@@ -1,0 +1,55 @@
+<!-- Fullscreen gallery start -->
+<div class="slider" id="slider">
+	<div id="gallery">
+		<!-- Photos go here -->
+    <% @photos.each do |photo| %>
+      <img src="<%= photo.image.url %>" alt=""/>
+    <% end %>
+
+	</div>
+</div><!-- Slider div end / Fullscreen gallery end -->
+
+<div id="fullscreen"><div id="fullscreen_icon" title="Toggle fullscreen" class="qtip"></div></div>
+<div id="play"><div id="play_icon" title="Slideshow autoplay" class="qtip"></div></div>
+<div id="desc_info">
+  <div class="digg_pagination" style="text-align:center;padding:10px"> <%= will_paginate @photos %> </div>
+</div>
+<div id="modal_shadow"></div>
+
+<!-- Big navigation arrows -->
+<div id="left"><div id="arrow_left"></div><a href="#" id="scroll_left"></a></div>
+<div id="right"><div id="arrow_right"></div><a href="#" id="scroll_right"></a></div>
+
+<!-- Thumbnails -->
+<div id="gallery_hide"></div>
+<div id="thumbnails_bg">
+	<div id="mini_cont">
+	<!-- Big navigation arrows -->
+		<a class="prev" id="mini_prev" href="#"></a>
+		<a class="next" id="mini_next" href="#"></a>
+		<div id="thumbnails_cont">
+      <div style="text-align:center;padding:10px"> <%= will_paginate @photos %> </div>
+			<div id="thumbnails">
+				<!-- Thumbnails go here -->
+        <% @photos.each do |photo| %>
+          <a href="#"><img src="<%= photo.image.disp %>" alt=""/></a>
+        <% end %>
+
+			</div><!-- thumbnails div end -->
+		</div><!-- thumbnails_cont div end -->
+		<!-- footer -->
+		<div id="bottom-line">
+
+			<div id="author">&copy; Hariprasanth</div>
+		</div><!-- bottom-line div end -->
+
+	</div><!-- mini_cont div end -->
+</div><!-- thumbnails_bg div end -->
+
+<div id="gallery-show"></div>
+
+<div id="overlay_l"></div>
+<div id="overlay_r"></div>
+<!--<div id="img-pattern"></div> !-->
+
+</div>

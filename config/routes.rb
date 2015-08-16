@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'images/upload_images'
+
   get 'ajoke/options'
 
-  get 'ajoke/gallaries'
+  get 'ajoke/galleries'
 
   get 'ajoke/clients'
 
@@ -11,6 +13,13 @@ Rails.application.routes.draw do
   get 'ajoke/notifications'
 
   get 'ajoke/profile'
+
+  match '/ajoke/create_gallery' => 'ajoke#create_gallery', via: [:post]
+  match '/ajoke/upload_images' => 'ajoke#upload_images', via: [:get]
+  match '/ajoke/add_photos' => 'ajoke#add_photos', via: [:get]
+  match '/ajoke/uploaded_images' => 'ajoke#uploaded_images', via: [:get]
+  match '/ajoke/update_cov' => 'ajoke#update_cov', via: [:post]
+  match '/ajoke/save_images', :to => 'ajoke#save_images', :via => [:post, :put]
 
   devise_for :users
 
@@ -30,6 +39,8 @@ Rails.application.routes.draw do
   #get 'pages/ajoke'
 
   match '/about', :to => 'pages#about', :via => [:get]
+  match '/galleries', :to => 'pages#galleries', :via => [:get]
+  match '/view_gallery', :to => 'images#view_gallery', :via => [:get]
   match '/packages', :to => 'pages#packages', :via => [:get]
   match '/contact', :to => 'pages#contact', :via => [:get]
   match '/ajoke', :to => 'ajoke#options', :via => [:get]
