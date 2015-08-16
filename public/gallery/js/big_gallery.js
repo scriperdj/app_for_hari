@@ -322,12 +322,9 @@ $(window).load(function() {
 
 						$(newItems.get(2)).fadeTo(2000,1);
 						$desc_info.attr('class',$(newItems.get(2)).attr('id'));
-						if(!$('#desc_'+ $(newItems.get(2)).attr('id')).html()) {
-							$desc_info.css('visibility','hidden');
-						}
-						else {
+
 							$desc_info.css('visibility','visible');
-						}
+
 					}
 			},
 		items: {
