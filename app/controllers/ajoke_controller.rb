@@ -37,8 +37,8 @@ class AjokeController < ApplicationController
   def create_gallery
     name = params[:name]
     date =  Date.strptime(params[:event_date], "%m/%d/%Y")
-    puts 'name=' + name +  '  date=' + date.to_s
-    @gallery = Gallery.new(name: name, event_date: date)
+    #puts 'name=' + name +  '  date=' + date.to_s
+    @gallery = Gallery.new(:name => name, :event_date => date)
 
     if @gallery.save
       redirect_to ajoke_upload_images_path(:gallery => @gallery)
