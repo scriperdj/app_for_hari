@@ -32,7 +32,7 @@
 			<div id="thumbnails">
 				<!-- Thumbnails go here -->
         <% @photos.each do |photo| %>
-          <a href="#"><img src="<%= photo.image.disp %>" alt=""/></a>
+          <a href="#"><img style="width:100px;" src="<%= photo.image.disp %>" alt=""/></a>
         <% end %>
 
 			</div><!-- thumbnails div end -->

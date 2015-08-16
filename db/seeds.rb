@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.create(email:"admin@haristudio.com", password:"haristudio", admin:true)
-gallery = Gallery.create(name:"home_cover")
+gallery = Gallery.create(name:"home_cover", event_date: "01/01/2015")
 picture = Picture.create(gallery_id: gallery.id)
-picture.image = File.open("/home/scriperdj/rails_projects/hari_web/public/images/photography/fullscreen11.jpg")
-picture.save!
+#picture.image = File.open("/home/scriperdj/rails_projects/hari_web/public/images/photography/fullscreen11.jpg")
+#picture.save!
