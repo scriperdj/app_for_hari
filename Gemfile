@@ -20,13 +20,14 @@ gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'nprogress-rails'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Additional gems
-gem "carrierwave", "~> 0.6.2"
+gem 'carrierwave-aws'
 #gem "rmagick"
 gem "mini_magick", "~> 3.4"
 gem 'gravatar_image_tag'
