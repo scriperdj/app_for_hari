@@ -176,7 +176,7 @@ $(function () {
         });
   $("#fileupload").bind("fileuploaddone", function (e, data) {
     toastr['success']("Cover image updated with " + data.result.files[0].name);
-    $("#progressbar").hide();
+  //  $("#progressbar").hide();
   //  window.location.href = '<%=ajoke_upload_images_path %>?gallery=<%=params[:gallery] %>';
 
   });
