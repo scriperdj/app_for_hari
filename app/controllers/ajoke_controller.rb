@@ -55,6 +55,11 @@ class AjokeController < ApplicationController
     @title = "Upload images to " + @gallery.name
   end
 
+  def add_photos
+    @gallery = Gallery.find(params[:gallery])
+    @title = "Upload images to " + @gallery.name
+  end
+
   def uploaded_images
     @image = Image.where(:gallery_id => params[:gallery])
     @photo = @image.order(created_at: :desc)

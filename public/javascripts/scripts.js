@@ -322,10 +322,10 @@
 
 		if ( $( this ).attr( 'target' ) != '_blank' && link.indexOf( '.jpg' ) < 0 && link.indexOf( '.jpeg' ) < 0 && link.indexOf( '.png' ) < 0 && link.indexOf( '.gif' ) < 0 && link.indexOf( '#' ) < 0 ) {
 			$( '.loadreveal').removeClass('reveal');
-		/*	setTimeout( function() {
+			setTimeout( function() {
 				window.location.href=link;
 			}, 400 );
-			e.preventDefault(); */
+			e.preventDefault(); 
 		}
 	});
 
@@ -341,7 +341,7 @@
 		});
 
 
-		
+
 
 		// before-after
 		var $before_after = jQuery('.before-after.gallery');

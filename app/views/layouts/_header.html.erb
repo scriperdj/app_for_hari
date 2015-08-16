@@ -1,5 +1,7 @@
 <body class="<%= locals[:body_class] %>">
-
+  <!-- Loader _______________________________-->
+ <div class="loadreveal"></div>
+ <div id="loadscreen"><div id="loader"><span></span></div></div>
 
     <header role="banner" id="header">
 
@@ -17,12 +19,14 @@
 
 				<div id="menu">
 					<ul>
+            <% uri = URI.parse(request.original_url) %>
 						<li class="<%= locals[:home_class] %>"><%= link_to("Home", root_path) %></li>
 						<li class="<%= locals[:gal_class] %>"><%= link_to("Galleries", galleries_path) %></li>
 						<li class="<%= locals[:pack_class] %>"><%= link_to("Packages", packages_path)%></li>
 						<li class="<%= locals[:about_class] %>"><%= link_to("About", about_path) %></li>
 						<li class="<%= locals[:contact_class] %>"><%= link_to("Contact", contact_path) %></li>
 						<% if user_signed_in? %>
+              <li class="<%= (uri.path.include? ajoke_path)? 'current-menu-item' : '' %>"><%= link_to("Admin", ajoke_path) %></li>
 							<li><%= link_to("Logout", destroy_user_session_path, method: :delete) %></li>
 						<% end%>
 					</ul>

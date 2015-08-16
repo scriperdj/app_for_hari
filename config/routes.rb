@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   match '/ajoke/create_gallery' => 'ajoke#create_gallery', via: [:post]
   match '/ajoke/upload_images' => 'ajoke#upload_images', via: [:get]
+  match '/ajoke/add_photos' => 'ajoke#add_photos', via: [:get]
   match '/ajoke/uploaded_images' => 'ajoke#uploaded_images', via: [:get]
   match '/ajoke/update_cov' => 'ajoke#update_cov', via: [:post]
   match '/ajoke/save_images', :to => 'ajoke#save_images', :via => [:post, :put]
