@@ -16,3 +16,4 @@ tmp/**/*
 !/log/.keep
 /tmp
 /public/uploads
+/config/app_environment_variables.rb

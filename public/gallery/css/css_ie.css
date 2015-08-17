@@ -1,9 +1,9 @@
-/***********************
-Big Gallery
-Author: (Shared on MafiaShare.net) Jan Skwara
-***********************/
 
 
+
+body {
+	z-index:1;
+}
 
 h1, h2, h3, h4, h5, h6 {
  filter:none !important;
@@ -22,17 +22,19 @@ h1.big_header {
 }
 
 .butt  , .butt:focus {
-		background: #white !important;
+		background: white !important;
 		background-image: url(../img/button_arrow.png) !important;
 		background-position: right center !important;
 		background-repeat:no-repeat !important;
 }
 
 .butt:hover, .butt:active {
-		background: #white !important;
+		background: white !important;
 		background-image: url(../img/button_arrow_hover.png) !important;
 		background-position: right center !important;
 		background-repeat:no-repeat !important;
 }
 
-
+.buy li a, .follow li a{
+	height:19px !important;
+}
