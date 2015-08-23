@@ -1,0 +1,45 @@
+<div class="whistles whistles-toggle">
+					<h3 style="float:right;" class="whistle-title">Create new client</h3>
+					<div class="whistle-content" >
+            <form action="/ajoke/clients/create" method="post" id="commentform" class="comment-form" novalidate>
+							<%= render 'layouts/error_messages', :object => @client %>
+                <div style="width:30%;float:left;padding-right:20px;">
+									<p class="comment-form-author">
+										<label for="name">Name <span class="required">*</span></label>
+										<input id="name" name="name" type="text" placeholder="Client's Name" size="20" required />
+									</p>
+                </div>
+                <div style="width:30%;float:left;">
+									<p class="comment-form-email">
+										<label for="email">Email <span class="required">*</span></label>
+										<input id="email" name="email" type="text" placeholder="email@example.com" size="30" required /></p>
+                </div>
+								<p class="form-submit" style="padding-top:35px;padding-left:20px;">
+									<input name="submit" type="submit" id="submit" value="Create" />
+								</p>
+						</form>
+          </div>
+</div>
+<div class="column-grid">
+	<div >
+		<% unless @Clients.length == 0 %>
+			<table>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>City</th>
+					<% @Clients.each do |cl| %>
+						<tr>
+							<td><a href="<%=ajoke_clients_edit_path(client: cl.id) %>"><%= cl.name %></a> </td>
+							<td><a href="<%=ajoke_clients_edit_path(client: cl.id) %>"><%= cl.email %></a> </td>
+							<td><a href="<%=ajoke_clients_edit_path(client: cl.id) %>"><%= cl.phone_no %></a> </td>
+							<td><a href="<%=ajoke_clients_edit_path(client: cl.id) %>"><%= cl.city %></a> </td>
+						</tr>
+					<% end %>
+			</table>
+		<% else %>
+			<p style="text-align:center;">No Clients created yet. <p>
+		<% end %>
+	</div>
+	<div style="text-align:center;padding:10px"> <%= will_paginate @Clients %> </div>
+</div>

@@ -53,6 +53,22 @@ input[type=submit]:active, input[type=button]:active { outline: 0; }
 .button:hover::after, button:hover::after, .button:focus::after, button:focus::after { height: 260%; opacity: 0; }
 .button:active::after, button:active::after { height: 300%; opacity: 1; }
 
+.chosen-container-single .chosen-single {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #cbd5dd;
+    border-radius: 2px;
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: text;
+    height: auto !important;
+    margin: 0;
+    min-height: 30px;
+    overflow: hidden;
+    padding: 4px 12px;
+    position: relative;
+    width: 100%;
+}
+
 form#searchbar { width: 100%; position: relative; }
 form#searchbar #searchbar-submit { position: absolute; right: -12px; top: -2px; background: none; border: 0; font-size: 1.1em; color: black; box-shadow: none;padding: 0; }
 

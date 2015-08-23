@@ -3,6 +3,7 @@ class Gallery < ActiveRecord::Base
   validates :event_date, :presence => true
   has_many :pictures, :dependent => :destroy
   has_many :images, :dependent => :destroy
+  has_one :client
 
   private
 

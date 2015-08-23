@@ -1,0 +1,73 @@
+<!-- MAIN CONTENT SECTION  _____________________________________________-->
+	<section id="content" role="main">
+
+			<div class="column-grid ">
+
+				<div class="column column-span-2 column-push-0 column-last">
+
+					<p style="text-align:center;"><%= @client.name %>'s Details</p>
+          <%= form_for @client, url:'/ajoke/clients/update' do |f| %>
+          <%= f.hidden_field :id%>
+					<fieldset>
+						<p class="form-column">
+							<label for="name" ><span class="required">*</span> Name</label>
+							<%= f.text_field :name, id: "name", size: "30", style: "color: #9b9b9b;" %>
+						</p>
+						<p class="form-column">
+							<label for="email" ><span class="required">*</span> Email</label>
+              <%= f.text_field :email, id: "email", size: "30", style: "color: #9b9b9b;" %>
+						</p>
+            <p class="form-column">
+							<label for="phone" >Phone number</label>
+              <%= f.text_field :phone_no, id: "phone", size: "30", style: "color: #9b9b9b;" %>
+
+						</p>
+						<p class="form-column">
+							<label for="city" >City</label>
+              <%= select_tag "client[city]", options_for_select(@cities, @client.city ),class: "chosen-select", size:"30" %>
+
+						</p>
+            <p>
+							<label for="galleries" ><span class="required">*</span> Client's Gallaries</label>
+							<%= select_tag "gals", options_from_collection_for_select(@galleries, "id", "name", @gals), multiple: true, id: 'gals', class: "chosen-select", size:"30"  %>
+
+							<input id='cl_galleries' name='client[galleries]' type='hidden' value=''/>
+						</p>
+						<p>
+							<input type="submit" class="submit" id="submit" value="Update" />
+						</p>
+					</fieldset>
+
+					<% end %>
+				</div>
+			</div>
+
+			<!-- WYSIWYG ends here __-->
+
+	</section>
+  <!-- Chosen -->
+  <script src="/javascripts/chosen/chosen.jquery.js"></script>
+  <script>
+    $(document).ready(function(){
+			
+      var config = {
+                      '.chosen-select'           : {},
+                      '.chosen-select-deselect'  : {allow_single_deselect:true},
+                      '.chosen-select-no-single' : {disable_search_threshold:10},
+                      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+                      '.chosen-select-width'     : {width:"95%"}
+                  }
+                  for (var selector in config) {
+                      $(selector).chosen(config[selector]);
+
+                  }
+			$("#gals").chosen().change(function(e, params){
+						 values = $("#gals").chosen().val();
+							$('#cl_galleries').val(values);
+							console.log('val=' + values);
+						 //values is an array containing all the results.
+						});
+                });
+
+
+  </script>

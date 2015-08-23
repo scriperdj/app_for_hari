@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808160552) do
+ActiveRecord::Schema.define(version: 20150823041106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "client_galleries", force: :cascade do |t|
+    t.integer  "gallery_id"
+    t.integer  "client_id"
+    t.string   "download_code"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone_no"
+    t.string   "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "galleries", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +44,14 @@ ActiveRecord::Schema.define(version: 20150808160552) do
     t.boolean  "enable_password"
     t.string   "password"
     t.date     "event_date"
+  end
+
+  create_table "gallery_downloads", force: :cascade do |t|
+    t.string   "gallery_id"
+    t.string   "user_email"
+    t.string   "download_count"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "images", force: :cascade do |t|

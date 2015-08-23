@@ -12,6 +12,7 @@
      <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
       <link rel="stylesheet" href="/stylesheets/jquery.fileupload.css">
       <link rel="stylesheet" href="/stylesheets/jquery.fileupload-ui.css">
+      <link rel="stylesheet" href="/stylesheets/chosen/chosen.css">
 
 
 
@@ -46,9 +47,9 @@
 					</div>
 				</article>
 
-				<article class="<%= (uri.path === ajoke_clients_path)? "active" : "" %>">
+				<article class="<%= (uri.path === ajoke_clients_path)? "active" : (uri.path === ajoke_clients_edit_path)? "active" : "" %>">
 					<div class="entry-meta">
-						<a href="/ajoke/clients" style="<%= (uri.path === ajoke_clients_path)? "" : "color:inherit;" %>"><h2>Clients  <i class="icon-diamond"></i></h2></a>
+						<a href="/ajoke/clients" style="<%= (uri.path === ajoke_clients_path)? "" : (uri.path === ajoke_clients_edit_path)? "" : "color:inherit;" %>"><h2>Clients  <i class="icon-diamond"></i></h2></a>
 					</div>
 				</article>
 

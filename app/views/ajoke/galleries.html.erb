@@ -36,7 +36,7 @@
 
 			  <figure class="gallery-item" style="position: absolute; left: 0px; top: 0px;">
 			    <header class='gallery-icon'>
-			      <a href="<%=ajoke_upload_images_path %>?gallery=<%=gal.id %>" ><img id="galimg" data-id='<%= gal.id %>' src="<%= ( pic.nil? )? '' : pic.image.disp %>" alt="" /></a>
+			      <a href="<%=ajoke_upload_images_path %>?gallery=<%=gal.id %>" ><img id="galimg" data-id='<%= gal.id %>' src="<%= ( pic.nil? )? '/images/photography/default.jpg' : pic.image.disp %>" alt="" /></a>
 			    </header>
 			    <figcaption class='gallery-caption'>
 			      <div  class="entry-summary">
@@ -55,52 +55,9 @@
 
       <!-- Javascripts ______________________________________-->
 
-<script src="/javascripts/retina.min.js"></script>
 
-<!-- include accordion / tabs plugin -->
-<script src="/javascripts/whistles.min.js"></script>
-<!-- include mousewheel plugins -->
-<script src="/javascripts/jquery.mousewheel.min.js"></script>
 <script>
 $(function() {
   $('#event_date').datepicker();
-	// masonry gallery
-	var $masonry_gallery = jQuery('.masonry-gallery.gallery');
-	if ( $masonry_gallery.length > 0 ) {
-
-		$masonry_gallery.each( function(index, element) {
-			var $masonry_items = $(element).find('.gallery-item');
-
-			// set masonry layout
-			$(element).isotope({
-				masonry: { columnWidth: $(element).find('.gallery-item')[0] },
-				itemSelector: '.gallery-item'
-			});
-			$(element).isotope('layout');
-
-			// filtering
-			jQuery('#gallery-filter li a').on('click', function(){
-				jQuery('#gallery-filter li a').removeClass('active');
-				jQuery(this).addClass('active');
-				var selector = jQuery(this).attr('data-filter');
-				$masonry_gallery.isotope({ filter: selector });
-				return false;
-			});
-
-			// changing layout
-			jQuery('#grid-changer li a').on('click', function(){
-				jQuery('#grid-changer li a').removeClass('active');
-				jQuery(this).toggleClass('active');
-
-				$masonry_items.removeClass('col-3');
-				$masonry_items.removeClass('col-4');
-				$masonry_items.removeClass('col-5');
-				$masonry_items.toggleClass(jQuery(this).closest('li').attr('class'));
-				$masonry_gallery.isotope('layout');
-			});
-
-		});
-	}
-
 });
 </script>

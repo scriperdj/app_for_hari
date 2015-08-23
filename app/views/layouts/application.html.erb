@@ -9,6 +9,19 @@
    <title><%= title %></title>
    <%= csrf_meta_tag %>
    <%= render "layouts/stylesheets" %>
+   <script  language="javascript">
+      document.onmousedown = disableclick;
+      document.oncontextmenu = new Function("return false");
+      status="Right Click Disabled";
+      function disableclick(event)
+      {
+        if(event.button==2)
+         {
+           console.log(status);
+           return false;
+         }
+      };
+    </script>
  </head>
 
 	<%= yield %>

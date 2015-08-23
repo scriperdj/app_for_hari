@@ -1,10 +1,31 @@
 <h3 style="text-align:center;"><%= @gallery.name %> </h3>
 
 <div class="whistles whistles-toggle">
-          <h3 style="float:right;" class="whistle-title"><a href="<%= ajoke_add_photos_path %>?gallery=<%=params[:gallery] %>">Add photos</a></h3>
-          <div class="whistle-content" >
+  <h3 style="float:right;" class="whistle-title"><a href="<%= ajoke_add_photos_path %>?gallery=<%=params[:gallery] %>">Add photos</a></h3>
+  <div class="whistle-content" >
+  </div>
 
-          </div>
+  <h3 style="float:left;" class="whistle-title">Add Client</h3>
+  <div class="whistle-content" >
+    <form action="/ajoke/clients/update_client" method="post" id="commentform" class="comment-form" novalidate>
+      <%= render 'layouts/error_messages', :object => @gallery %>
+        <div style="width:30%;float:left;padding-right:20px;">
+          <p class="comment-form-author">
+
+            <%= select_tag "client[name]", options_from_collection_for_select(@clients, "id", "name", (@client.nil?)? '' : @client.client_id), placeholder: "Select Client", class: "chosen-select", size:"30" %>
+            <input type="hidden" name="client[id]" value="<%= (@client.nil?)? '' : @client.id %>" />
+            <input type="hidden" name="client[gallery]" value="<%= params[:gallery] %>" />
+          </p>
+        </div>
+
+        <p class="form-submit" style="padding-top:35px;padding-left:20px;">
+          <input id="updt_cl" name="submit" type="submit" id="submit" value="Save" />
+          <a href="<%=ajoke_clients_path %>"><input type="button" value="Add new" /></a>
+        </p>
+
+    </form>
+  </div>
+
 </div>
 
 
@@ -12,15 +33,22 @@
 <!-- Gallery __-->
     <%= render '/ajoke/uploaded_images' %>
 </div>
-<!-- include accordion / tabs plugin -->
-<script src="/javascripts/whistles.min.js"></script>
-
-
-
+<!-- Chosen -->
+<script src="/javascripts/chosen/chosen.jquery.js"></script>
 <script>
 $(function () {
 
+  var config = {
+                  '.chosen-select'           : {},
+                  '.chosen-select-deselect'  : {allow_single_deselect:true},
+                  '.chosen-select-no-single' : {disable_search_threshold:10},
+                  '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+                  '.chosen-select-width'     : {width:"95%"}
+              }
+              for (var selector in config) {
+                  $(selector).chosen(config[selector]);
 
+              }
 
   //$("#uploaded_img").load('/ajoke/uploaded_images?gallery=<%=params[:gallery] %>');
 
@@ -40,43 +68,24 @@ $(function () {
      });
   });
 
+  $($('#commentform')).submit(function(event) {
+    // Stop the browser from submitting the form.
+    event.preventDefault();
 
-  // masonry gallery
-	var $masonry_gallery = jQuery('.masonry-gallery.gallery');
-	if ( $masonry_gallery.length > 0 ) {
+    var formData = $($('#commentform')).serialize();
+    //console.log("here?");
+    //toastr['success']("Cover image updated for the gallery");
+    $.ajax({
+         type: "POST",
+         url: '/ajoke/clients/update_client',
+         dataType: 'json',
+         data : formData,
 
-		$masonry_gallery.each( function(index, element) {
-			var $masonry_items = $(element).find('.gallery-item');
+     }).done(function(response) {
+       console.log(result);
+      });
+      toastr['success']("Client details updated!");
+  });
 
-			// set masonry layout
-			$(element).isotope({
-				masonry: { columnWidth: $(element).find('.gallery-item')[0] },
-				itemSelector: '.gallery-item'
-			});
-			$(element).isotope('layout');
-
-			// filtering
-			jQuery('#gallery-filter li a').on('click', function(){
-				jQuery('#gallery-filter li a').removeClass('active');
-				jQuery(this).addClass('active');
-				var selector = jQuery(this).attr('data-filter');
-				$masonry_gallery.isotope({ filter: selector });
-				return false;
-			});
-
-			// changing layout
-			jQuery('#grid-changer li a').on('click', function(){
-				jQuery('#grid-changer li a').removeClass('active');
-				jQuery(this).toggleClass('active');
-
-				$masonry_items.removeClass('col-3');
-				$masonry_items.removeClass('col-4');
-				$masonry_items.removeClass('col-5');
-				$masonry_items.toggleClass(jQuery(this).closest('li').attr('class'));
-				$masonry_gallery.isotope('layout');
-			});
-
-		});
-	}
 });
 </script>

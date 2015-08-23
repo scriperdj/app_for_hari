@@ -32,6 +32,7 @@ gem 'carrierwave-aws'
 gem "mini_magick", "~> 3.4"
 gem 'gravatar_image_tag'
 gem 'will_paginate-bootstrap'
+gem 'rubyzip', '>= 1.0.0'
 gem 'devise'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -49,6 +49,8 @@ class AjokeController < ApplicationController
 
   def upload_images
     @gallery = Gallery.find(params[:gallery])
+    @clients = Client.all
+    @client = ClientGallery.find_by(gallery_id: @gallery.id)
     @image = Image.where(:gallery_id => @gallery)
     @photo = @image.order(created_at: :desc)
     @photos = @photo.paginate(:page => params[:page],:per_page => 6)
@@ -126,11 +128,4 @@ class AjokeController < ApplicationController
     @title = "Profile"
   end
 
-  private
-
-    def admin_check
-      unless current_user.admin?
-        sign_out_and_redirect(current_user)
-      end
-    end
 end

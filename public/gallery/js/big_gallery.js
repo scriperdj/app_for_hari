@@ -343,8 +343,9 @@ var img_prop =$background_img.width()/$background_img.height();
 					}
 			},
 		items: {
-				visible: 5,
+				visible: 4,
 				start:-2,
+				minimum: 0,
 				width: "variable"
 		},
 		prev: {

@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
 
+  match 'ajoke/clients' => 'clients#index', via: [:get]
+
+  match 'ajoke/clients/create' => 'clients#create', via: [:post]
+
+  match 'ajoke/clients/edit' => 'clients#edit', via: [:get]
+  patch 'ajoke/clients/update' => 'clients#update'
+  match 'ajoke/clients/update_client' => 'clients#update_client', via: [:post]
+  match 'ajoke/clients/delete' => 'clients#delete', via: [:get]
+
   get 'images/upload_images'
 
   get 'ajoke/options'
 
   get 'ajoke/galleries'
 
-  get 'ajoke/clients'
+  #get 'ajoke/clients'
 
   get 'ajoke/schedule'
 
