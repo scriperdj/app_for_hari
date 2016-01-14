@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'studionathan'
-set :repo_url, 'git@github.com:scriperdj/app_for_hari.git'
+set :repo_url, 'file:///scriperdj/rails_projects/hari_web.git'
 set :branch, :master
 set :deploy_to, '/home/deploy/studionathan'
 
