@@ -1,3 +1,4 @@
+<%= javascript_include_tag "/javascripts/select2.min.js" %>
 <!-- Header _______________________________-->
 <%= render "layouts/header", :locals => {:home_class => '',
 										 :gal_class => '',
@@ -15,8 +16,8 @@
 
 			<div class="column-grid column-grid-3">
 				<div class="column column-span-1 column-push-0 column-first">
-					<p class="big"><strong>T</strong>: &nbsp;  (123) 456-789<br />
-					<strong>E</strong>:  &nbsp;  <a href="#">info@haristudio.com</a></p>
+					<p class="big"><strong>T</strong>: &nbsp;  (+91) 9952474346<br />
+					<strong>E</strong>:  &nbsp;  <a href="#">thestudionathan@gmail.com</a></p>
 
 
 				</div>
@@ -36,15 +37,28 @@
 							<label for="email" accesskey="E"><span class="required">*</span> Email</label>
 							<input name="email" type="text" id="email" size="30" value="" />
 						</p>
-
+						<p class="form-column">
+							<label for="occation" ><span class="required">*</span> Occation</label>
+							<select  multiple="multiple" name="occation" id="occation" size="30">
+								<option value=""></option>
+								<option value="prewed">Pre Wedding shoot</option>
+								<option value="reception">Reception</option>
+								<option value="wed">Wedding</option>
+								<option value="postwed">Post Wedding shoot</option>
+								<option value="birthday">Birthday</option>
+							</select>
+						</p>
+						<p class="form-column">
+							<label for="date" ><span class="required">*</span> Date</label>
+							<input name="date" type="text" id="event_date" size="30" value="" />
+						</p>
 						<p>
 							<label for="comments" accesskey="C"><span class="required">*</span> Your comments</label>
 							<textarea name="comments" cols="40" rows="3" id="comments"></textarea>
 						</p>
 
 						<p><span class="required">*</span> Are you human?
-							<label for="verify" accesskey="V" class="inline">&nbsp;&nbsp;&nbsp;3&nbsp;+&nbsp;1&nbsp;=</label>
-							<input name="verify" type="text" id="verify" size="4" value="" style="width: 30px;" />
+							<%= recaptcha_tags %>
 
 							<input type="submit" class="submit" id="submit" value="Submit" />
 						</p>
@@ -59,8 +73,16 @@
 
 	</section>
 
+	<footer id="footer" role="contentinfo">
+		<p class="copyright">studionathan &copy; 2016</p>
+			<ul class="social-icons">
+				<li><a href="#" target="_blank" title="Flickr"><i class="icon-flickr"></i></a></li>
+				<li><a href="#" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
+				<li><a href="#" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>
+			</ul>
+	</footer>
 <!-- Javascripts ______________________________________-->
- 
+
 
 <!-- include image popups -->
 <%= javascript_include_tag "/javascripts/jquery.magnific-popup.min.js" %>
@@ -70,3 +92,15 @@
 
 <!-- include custom script -->
 <%= javascript_include_tag "/javascripts/scripts.js" %>
+<script>
+$(function() {
+  $('#event_date').datepicker();
+});
+</script>
+
+<script>
+$(document).ready(function() {
+	$("#occation").select2();
+});
+
+</script>

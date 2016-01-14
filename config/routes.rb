@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   #get 'pages/ajoke'
 
   match '/about', :to => 'pages#about', :via => [:get]
+  match '/gallery', :to => 'pages#gallery', :via => [:get]
   match '/galleries', :to => 'pages#galleries', :via => [:get]
   match '/view_gallery', :to => 'images#view_gallery', :via => [:get]
   match '/packages', :to => 'pages#packages', :via => [:get]

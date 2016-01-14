@@ -9,6 +9,8 @@
    <title><%= title %></title>
    <%= csrf_meta_tag %>
    <%= render "layouts/stylesheets" %>
+   <link href="/stylesheets/select2.css" rel="stylesheet">
+
    <script  language="javascript">
       document.onmousedown = disableclick;
       document.oncontextmenu = new Function("return false");
@@ -22,6 +24,8 @@
          }
       };
     </script>
+    <%= javascript_include_tag "/javascripts/jquery.lazyload.min.js" %>
+
  </head>
 
 	<%= yield %>

@@ -14,6 +14,9 @@ class CoverUploader < CarrierWave::Uploader::Base
   version :thumb do
     resize_to_fill(100, 100)
   end
+  version :disp do
+    resize_to_fit(600, -1)
+  end
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog

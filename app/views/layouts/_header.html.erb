@@ -9,7 +9,7 @@
 
 			<!-- Logo __-->
 			<h1 id="logo">
-				<%= link_to logo, root_path, :id => "logo-svg-animated" %>
+				<%= link_to logo, root_path %>
 			</h1>
 
 			<!-- Main menu __-->
@@ -21,8 +21,11 @@
 					<ul>
             <% uri = URI.parse(request.original_url) %>
 						<li class="<%= locals[:home_class] %>"><%= link_to("Home", root_path) %></li>
-						<li class="<%= locals[:gal_class] %>"><%= link_to("Galleries", galleries_path) %></li>
+            <li class="<%= locals[:gal_class] %>"><%= link_to("Gallery", gallery_path) %></li>
+				    <!--
+            <li class="<%= locals[:gal_class] %>"><%= link_to("Galleries", galleries_path) %></li>
 						<li class="<%= locals[:pack_class] %>"><%= link_to("Packages", packages_path)%></li>
+            !-->
 						<li class="<%= locals[:about_class] %>"><%= link_to("About", about_path) %></li>
 						<li class="<%= locals[:contact_class] %>"><%= link_to("Contact", contact_path) %></li>
 						<% if user_signed_in? %>

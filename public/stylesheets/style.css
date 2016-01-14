@@ -120,7 +120,7 @@ body.fullscreen #header { position: absolute; }
 /* Logo */
 #logo { width: 20%; height: auto; float: left; margin: 0; font-weight: normal; position: absolute; z-index: 200; vertical-align: middle;  }
 #logo a { color: #222; text-decoration: none; white-space: nowrap; display: block; }
-#logo img { display: inline-block; vertical-align: bottom; margin: -100% .5em 0 0; position: relative; top: .5em; display: none; }
+#logo img { display: inline-block; vertical-align: bottom; margin: -100% .5em 0 0; position: relative; top: .5em; }
 #logo svg path { fill: #222; }
 #logo #logo-svg-animated svg path { stroke: #222; }
 

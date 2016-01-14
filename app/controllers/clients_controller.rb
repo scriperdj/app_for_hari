@@ -18,6 +18,7 @@ class ClientsController < ApplicationController
     email = params[:email]
     @client = Client.new(name: name, email: email)
     if @client.save
+
       redirect_to ajoke_clients_edit_path(client: @client.id)
     else
       render 'index'
@@ -66,7 +67,10 @@ class ClientsController < ApplicationController
       @client = ClientGallery.find(params[:client][:id])
       @client.client_id = params[:client][:name]
       @client.save
+      cl = Client.find(params[:client][:name])
     end
+    # Tell the UserMailer to send a welcome email after save
+    ClientMailer.delay(:queue => 'mailer').welcome_email(cl)
     #flash[:notice] = "Client details updated!"
     render :json => 'success'
   end

@@ -6,6 +6,10 @@ class PagesController < ApplicationController
     @title = "Home"
   end
 
+  def gallery
+    @title = "Gallery"
+  end
+
   def galleries
     @title = "Galleries"
     @gal = Gallery.where("id != 1")

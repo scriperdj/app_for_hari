@@ -7,6 +7,10 @@ class AjokeController < ApplicationController
     @title = "Options"
     @gallery = Gallery.find(1)
     @pictures = @gallery.pictures.build
+    @image = Picture.where(:gallery_id => @gallery)
+    @photo = @image.order(created_at: :desc)
+    @photos = @photo.paginate(:page => params[:page],:per_page => 6)
+
   end
 
   def save_cover
@@ -18,20 +22,24 @@ class AjokeController < ApplicationController
     unlocked_params = ActiveSupport::HashWithIndifferentAccess.new(p_attr)
     #@picture = @gallery.pictures.build(unlocked_params)
 
-    if @pic.update_attributes(unlocked_params)
+    @images = Picture.new(unlocked_params)
+
+    if @images.save
       respond_to do |format|
         format.html {
-          render :json => @pic.to_jq_upload,
+          render :json => @images.to_jq_upload,
           :content_type => 'text/html',
           :layout => false
         }
         format.json {
-          render :json => @pic.to_jq_upload
+          render :json => @images.to_jq_upload
         }
       end
     else
       render :json => [{:error => "custom_failure"}], :status => 304
     end
+
+
   end
 
   def create_gallery
