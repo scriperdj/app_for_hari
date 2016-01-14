@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: hari_web_production
-  username: hari_web
+  database: studionathan_production
+  username: postgres
   password: <%= ENV['HARI_WEB_DATABASE_PASSWORD'] %>
