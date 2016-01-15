@@ -57,14 +57,14 @@ set :puma_init_active_record, true
 set :puma_preload_app, false
 
 namespace :deploy do
-
+  execute "cd #{current_path};#{rails_env} bin/delayed_job restart"
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
-      execute "cd #{current_path};#{rails_env} bin/delayed_job restart"
+
     end
   end
 
