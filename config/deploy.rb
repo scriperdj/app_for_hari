@@ -64,6 +64,6 @@ namespace :deploy do
     end
   end
 
-  after "deploy:start", "delayed_job:start"
+  after "deploy:start", "bin/delayed_job:start"
 
 end
