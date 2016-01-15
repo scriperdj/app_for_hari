@@ -6,7 +6,10 @@ set :repo_url, 'git@github.com:scriperdj/app_for_hari.git'
 set :branch, :master
 set :deploy_to, '/home/deploy/studionathan'
 
-set :delayed_job_command, "bin/delayed_job"
+def rails_env
+  fetch(:rails_env, false) ? "RAILS_ENV=#{fetch(:rails_env)}" : ''
+end
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -61,9 +64,8 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
+      execute "cd #{current_path};#{rails_env} bin/delayed_job restart"
     end
   end
-
-  after "deploy:start", "bin/delayed_job:start"
 
 end
