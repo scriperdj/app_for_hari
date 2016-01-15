@@ -1,6 +1,6 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
-require 'delayed/recipes'
+
 set :application, 'studionathan'
 set :repo_url, 'git@github.com:scriperdj/app_for_hari.git'
 set :branch, :master
