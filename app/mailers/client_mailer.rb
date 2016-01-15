@@ -1,10 +1,9 @@
 class ClientMailer < ApplicationMailer
-  default from: 'admin@haristudio.com'
+  default to: 'scriperdj@gmail.com'
 
-  def welcome_email(user)
-    @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  def enquiry(message)
+    @message = message
+    mail(from: message[:email], subject: 'Enquiry from Studionathan')
   end
 
   #handle_asynchronously :welcome_email

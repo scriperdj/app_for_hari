@@ -1,4 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+<script src="/javascripts/toastr.min.js"></script>
 <%= javascript_include_tag "/javascripts/select2.min.js" %>
 <!-- Header _______________________________-->
 <%= render "layouts/header", :locals => {:home_class => '',
@@ -42,10 +44,9 @@
 							<label for="occation" ><span class="required">*</span> Occation</label>
 							<select  multiple="multiple" name="occation" id="occation" size="30">
 								<option value=""></option>
-								<option value="prewed">Pre Wedding shoot</option>
+								<option value="outdoor">Outdoor shoot</option>
 								<option value="reception">Reception</option>
-								<option value="wed">Wedding</option>
-								<option value="postwed">Post Wedding shoot</option>
+								<option value="wedding">Wedding</option>
 								<option value="birthday">Birthday</option>
 							</select>
 						</p>
@@ -54,7 +55,7 @@
 							<input name="date" type="text" id="event_date" size="30" value="" />
 						</p>
 						<p>
-							<label for="comments" accesskey="C"><span class="required">*</span> Your comments</label>
+							<label for="comments" accesskey="C"> Your comments</label>
 							<textarea name="comments" cols="40" rows="3" id="comments"></textarea>
 						</p>
 
@@ -102,6 +103,45 @@ $(function() {
 <script>
 $(document).ready(function() {
 	$("#occation").select2();
+
+	// Setup form validation on the #register-form element
+	$("#contactform").validate({
+
+    // Specify the validation rules
+    rules: {
+      name: "required",
+      occation: "required",
+      email: {
+          required: true,
+          email: true
+      },
+      date: "required",
+			"hiddenRecaptcha": {
+		     required: function() {
+		         if(grecaptcha.getResponse() == '') {
+		             return true;
+		         } else {
+		             return false;
+		         }
+				   }
+			 }
+  	},
+
+	  // Specify the validation error messages
+	  messages: {
+	    name: "Please enter your name",
+	    occation: "Please enter your occation",
+	    email: "Please enter a valid email address",
+	    date: "Please enter date of your occation"
+	  },
+
+	  submitHandler: function(form) {
+	      form.submit();
+	  }
+	});
 });
+
+
+
 
 </script>
