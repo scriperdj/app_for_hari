@@ -1,5 +1,5 @@
 class ClientMailer < ApplicationMailer
-  default to: 'scriperdj@gmail.com'
+  default to: 'thestudionathan@gmail.com'
 
   def enquiry(message)
     @message = message
