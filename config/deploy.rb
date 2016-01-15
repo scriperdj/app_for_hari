@@ -6,10 +6,9 @@ set :repo_url, 'git@github.com:scriperdj/app_for_hari.git'
 set :branch, :master
 set :deploy_to, '/home/deploy/studionathan'
 
-def rails_env
-  fetch(:rails_env, false) ? "RAILS_ENV=#{fetch(:rails_env)}" : ''
-end
-
+set :linked_dirs, %w{tmp/pids}
+set :delayed_job_server_role, :worker
+set :delayed_job_args, "-n 2"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -57,7 +56,7 @@ set :puma_init_active_record, true
 set :puma_preload_app, false
 
 namespace :deploy do
-  execute "cd #{current_path};#{rails_env} bin/delayed_job restart"
+
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -67,5 +66,11 @@ namespace :deploy do
 
     end
   end
+end
 
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'delayed_job:restart'
+  end
 end

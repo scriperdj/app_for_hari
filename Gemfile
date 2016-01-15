@@ -61,12 +61,14 @@ group :test do
 end
 gem 'figaro'
 gem 'puma'
+gem 'daemons'
 group :development do
   gem 'capistrano'
   gem 'capistrano3-puma'
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rvm'
+  gem 'capistrano-delayed-job', '~> 1.0'
 end
 group :production do
 	gem 'rails_12factor'
