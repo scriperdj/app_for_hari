@@ -9,7 +9,7 @@ set :deploy_to, '/home/deploy/studionathan'
 set :linked_dirs, %w{tmp/pids}
 set :delayed_job_server_role, :worker
 set :delayed_job_args, "-n 2"
-
+set :ssh_options, {:forward_agent => true}
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

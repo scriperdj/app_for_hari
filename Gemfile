@@ -68,7 +68,6 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rvm'
-  gem 'capistrano-delayed-job', '~> 1.0'
 end
 group :production do
 	gem 'rails_12factor'
