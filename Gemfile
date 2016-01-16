@@ -61,7 +61,6 @@ group :test do
 end
 gem 'figaro'
 gem 'puma'
-gem 'daemons'
 group :development do
   gem 'capistrano'
   gem 'capistrano3-puma'
