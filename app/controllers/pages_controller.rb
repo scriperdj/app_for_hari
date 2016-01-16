@@ -35,7 +35,7 @@ class PagesController < ApplicationController
         message = { name: params[:name], email: params[:email], occation: params[:occation], date: params[:date], comments: params[:comments]}
 
         if ClientMailer.enquiry(message).deliver_later
-          ClientMailer.autoreply(msg).deliver_later
+          ClientMailer.autoreply(message).deliver_later
           flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
         else
           flash.now[:error] = 'Technical issues.  Cannot send message.'
