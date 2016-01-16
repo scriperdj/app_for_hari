@@ -62,6 +62,7 @@ end
 gem 'figaro'
 gem 'puma'
 group :development do
+  gem 'capistrano3-delayed-job', '~> 1.0'
   gem 'capistrano'
   gem 'capistrano3-puma'
   gem 'capistrano-rails', require: false
