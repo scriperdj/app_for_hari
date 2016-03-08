@@ -31,7 +31,7 @@ class PagesController < ApplicationController
   def contact
     @title = "Contact us"
     if request.method == "POST"
-      if verify_recaptcha(:message => "Oh! It's error with reCAPTCHA!")
+      # if verify_recaptcha(:message => "Oh! It's error with reCAPTCHA!")
         message = { name: params[:name], email: params[:email], occation: params[:occation], date: params[:date], comments: params[:comments]}
 
         if ClientMailer.enquiry(message).deliver_later
@@ -42,10 +42,10 @@ class PagesController < ApplicationController
           render :contact
         end
 
-      else
-        redirect_to request.referrer
-        flash[:alert] = 'The captcha that was entered is incorrect, please try again.'
-      end
+      # else
+      #   redirect_to request.referrer
+      #   flash[:alert] = 'The captcha that was entered is incorrect, please try again.'
+      # end
     end
   end
 
