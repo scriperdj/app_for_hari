@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   match '/view_gallery', :to => 'images#view_gallery', :via => [:get]
   match '/packages', :to => 'pages#packages', :via => [:get]
   match '/contact', :to => 'pages#contact', :via => [:get, :post]
+  match '/album_request', :to => 'pages#album_request', :via => [:get, :post]
   match '/ajoke', :to => 'ajoke#options', :via => [:get]
   match '/ajoke/save_cover', :to => 'ajoke#save_cover', :via => [:post, :put]
 

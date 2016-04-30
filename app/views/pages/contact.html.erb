@@ -1,6 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
 <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-<script src="/javascripts/toastr.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <%= javascript_include_tag "/javascripts/select2.min.js" %>
 <!-- Header _______________________________-->
 <%= render "layouts/header", :locals => {:home_class => '',
@@ -41,7 +41,11 @@
 							<input name="email" type="text" id="email" size="30" value="" />
 						</p>
 						<p class="form-column">
-							<label for="occation" ><span class="required">*</span> Occation</label>
+	            <label for="phone" accesskey="P"><span class="required">*</span> Phone No</label>
+	            <input name="phone" type="text" id="phone" size="30" value="" />
+	          </p>
+						<p class="form-column">
+							<label for="occation" > Occation</label>
 							<select  multiple="multiple" name="occation" id="occation" size="30">
 								<option value=""></option>
 								<option value="outdoor">Outdoor shoot</option>
@@ -51,7 +55,7 @@
 							</select>
 						</p>
 						<p class="form-column">
-							<label for="date" ><span class="required">*</span> Date</label>
+							<label for="date" > Date</label>
 							<input name="date" type="text" id="event_date" size="30" value="" />
 						</p>
 						<p>
@@ -111,21 +115,13 @@ $(document).ready(function() {
     // Specify the validation rules
     rules: {
       name: "required",
-      occation: "required",
+      // occation: "required",
+			phone: "required",
       email: {
           required: true,
           email: true
       },
-      date: "required",
-			"hiddenRecaptcha": {
-		     required: function() {
-		         if(grecaptcha.getResponse() == '') {
-		             return true;
-		         } else {
-		             return false;
-		         }
-				   }
-			 }
+      // date: "required",
   	},
 
 	  // Specify the validation error messages

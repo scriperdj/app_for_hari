@@ -1,0 +1,134 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<!-- Header _______________________________-->
+<%= render "layouts/header", :locals => {:home_class => '',
+  :gal_class => '',
+  :pack_class =>'',
+  :about_class => '',
+  :contact_class => '',
+  :body_class => ''} %>
+<!-- MAIN CONTENT SECTION  _____________________________________________-->
+<section id="content" role="main">
+  <div class="wrapper">
+    <div class="column-grid column-grid-3">
+      <div class="column column-span-1 column-push-0 column-first">
+        <div id="pics" class="icons-showoff">
+        </div>
+      </div>
+      <div id="form_container" class="column column-span-2 column-push-0 column-last">
+        <h2>Submit request for Album making</h2>
+        <p>Please fill in below form for making photo album with photos of your choise.</p>
+
+        <div id="message"></div>
+        <form method="post" action="#" name="albumform" id="albumform">
+
+        <fieldset>
+          <p class="form-column">
+            <label for="name" accesskey="U"><span class="required">*</span> Your Name</label>
+            <input name="name" type="text" id="name" size="30" value="" />
+          </p>
+          <p class="form-column">
+            <label for="email" accesskey="E"><span class="required">*</span> Email</label>
+            <input name="email" type="text" id="email" size="30" value="" />
+          </p>
+          <p class="form-column">
+            <label for="phone" accesskey="P"><span class="required">*</span> Phone No</label>
+            <input name="phone" type="text" id="phone" size="30" value="" />
+          </p>
+          <p class="form-column">
+            <label for="photos" ><span class="required">*</span> Add selected photos for the album</label>
+            <input name="photos" class="button blue" type="file" id="files" name="files[]" multiple />
+            <input type="hidden" name="file_names" id="file_names" />
+            <input type="submit" class="submit" id="submit" value="Submit" />
+          </p>
+
+          <p>
+            <div class="notice info">
+              <p>
+                We only upload the names of files you selected. Don't worry about your data consumption.
+              </p>
+            </div>
+          </p>
+        </fieldset>
+
+        </form>
+      </div>
+    </div>
+
+  </div><!-- END .wrapper -->
+
+</section>
+<footer id="footer" role="contentinfo">
+  <p class="copyright">studionathan &copy; 2016</p>
+    <ul class="social-icons">
+      <li><a href="#" target="_blank" title="Flickr"><i class="icon-flickr"></i></a></li>
+      <li><a href="#" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
+      <li><a href="#" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>
+    </ul>
+</footer>
+<!-- Javascripts ______________________________________-->
+<!-- include image popups -->
+<%= javascript_include_tag "/javascripts/jquery.magnific-popup.min.js" %>
+<!-- include svg line drawing plugin -->
+<%= javascript_include_tag "/javascripts/jquery.lazylinepainter.min.js" %>
+<!-- include custom script -->
+<%= javascript_include_tag "/javascripts/scripts.js" %>
+<script>
+function handleFileSelect(evt) {
+  var files = [];
+
+  if(evt.type =="change"){
+    var files = evt.target.files; // FileList object
+  }
+  // files is a FileList of File objects. List some properties.
+  var output = [];
+  for (var i = 0, f; f = files[i]; i++) {
+    //pth = window.URL.createObjectURL(f);
+    //console.log("path=" + pth);
+    //output.push('<p>', decodeURI(escape(f.name)), '</p>');
+    output.push(decodeURI(escape(f.name)));
+  }
+  //document.getElementById('pics').innerHTML = output.join(''); //'<div class="notice info"><p style="width: 100%;">Preview of selected files</p></div>'
+  $("#file_names").val(output.join(','));
+  $("#pics").hide();
+}
+$(document).ready(function(){
+  $("#files").val("");
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  $("#albumform").validate({
+
+    // Specify the validation rules
+    rules: {
+      name: "required",
+      photos: "required",
+      phone: "required",
+      email: {
+          required: true,
+          email: true
+      }
+    },
+
+    // Specify the validation error messages
+    messages: {
+      name: "Please enter your name",
+      photos: "Please select the photos for album",
+      email: "Please enter a valid email address"
+    },
+
+    submitHandler: function(form) {
+        form.ajaxSubmit();
+        $("#form_container").html("<h2><center>Your photo album is in progress!</center></h2>")
+    }
+  });
+
+});
+(function(){
+    // Check for the various File API support.
+  if (window.File && window.FileReader && window.FileList && window.Blob) {
+    //Browser requirement met!
+  } else {
+    alert('This feature is not supported in your browser. Please upgrade the browser or use a different one.');
+  }
+})();
+</script>
