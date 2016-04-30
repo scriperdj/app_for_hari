@@ -39,8 +39,8 @@ class PagesController < ApplicationController
                     date: params[:date].presence || "Not provided",
                     comments: params[:comments].presence || "Not provided"}
 
-        if ClientMailer.enquiry(message).deliver_now
-          ClientMailer.autoreply(message).deliver_now
+        if ClientMailer.enquiry(message).deliver_later
+          ClientMailer.autoreply(message).deliver_later
           flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
         else
           flash.now[:error] = 'Technical issues.  Cannot send message.'
@@ -61,8 +61,8 @@ class PagesController < ApplicationController
                   email: params[:email],
                   phone: params[:phone],
                   files: params[:file_names]}
-      if ClientMailer.reqAlbum(message).deliver_now
-        ClientMailer.albumAutoreply(message).deliver_now
+      if ClientMailer.reqAlbum(message).deliver_later
+        ClientMailer.albumAutoreply(message).deliver_later
         flash.now[:notice] = 'We recieved your request. We will contact you soon!'
       else
         flash.now[:error] = 'Technical issues.  Please try later.'
