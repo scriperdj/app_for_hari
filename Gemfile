@@ -19,8 +19,6 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'delayed_job_active_record'
 gem "daemons"
-gem 'rails_serve_static_assets'
-gem 'rails_stdout_logging'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'nprogress-rails'
