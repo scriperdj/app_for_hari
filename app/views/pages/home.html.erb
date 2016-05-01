@@ -12,42 +12,33 @@
 		<div class="wrapper">
 			<!-- WYSIWYG -->
 			<div class="gallery fullscreen-gallery">
-				<figure class="gallery-item">
-					<header class='gallery-icon'>
-						<a href="#"><img src="images/4website/1.jpg"  alt="" /></a>
-					</header>
-					<figcaption class='gallery-caption'>
-						<div class="entry-summary">
-							<h2>Professional Candid Wedding Photography Services</h2>
-						</div>
-					</figcaption>
-				</figure>
-
-				<figure class="gallery-item">
-					<header class='gallery-icon'>
-						<a href="#"><img src="images/4website/2.jpg"  alt="" /></a>
-					</header>
-					<figcaption class='gallery-caption'>
-						<div class="entry-summary">
-							<h2>Professional Candid Wedding Photography Services</h2>
-						</div>
-					</figcaption>
-				</figure>
-
-				<figure class="gallery-item">
-					<header class='gallery-icon'>
-						<a href="#"><img src="images/4website/3.jpg"  alt="" /></a>
-					</header>
-					<figcaption class='gallery-caption'>
-						<div class="entry-summary">
-							<h2>Professional Candid Wedding Photography Services</h2>
-						</div>
-					</figcaption>
-				</figure>
-
-
-
-			</div>
+				<% @photos.each do |photo| %>
+				  <figure class="gallery-item <%= photo.gallery.name.downcase %>">
+				    <header class='gallery-icon'>
+				      <a href="#">
+								<img class="lazy" src="<%= photo.image.thumb %>" data-orig="<%= photo.image %>" alt="" />
+							</a>
+				    </header>
+						<figcaption class='gallery-caption'>
+							<div class="entry-summary">
+								<h2>Professional Candid Wedding Photography Services</h2>
+							</div>
+						</figcaption>
+				  </figure>
+				<% end %>
+				<% if @photos.length == 0 %>
+					<figure class="gallery-item">
+						<header class='gallery-icon'>
+							<a href="#"><img class="lazy" src="/images/load.gif" data-orig="images/4website/1.jpg"  alt="" /></a>
+						</header>
+						<figcaption class='gallery-caption'>
+							<div class="entry-summary">
+								<h2>Professional Candid Wedding Photography Services</h2>
+							</div>
+						</figcaption>
+					</figure>
+				<% end%>
+		</div>
 
 
 			<!-- END WYSIWYG -->
@@ -58,7 +49,7 @@
 		<p class="copyright">studionathan &copy; 2016</p>
 			<ul class="social-icons">
 				<li><a href="#" target="_blank" title="Flickr"><i class="icon-flickr"></i></a></li>
-				<li><a href="#" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
+				<li><a href="https://www.facebook.com/studionathan/" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
 				<li><a href="#" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>
 			</ul>
 	</footer>
@@ -84,7 +75,10 @@ $("#logo").hide()
 <!-- include custom script -->
 <%= javascript_include_tag "scripts.js" %>
 <script>
-$(function() {
-    $(".gallery-item img").lazyload();
+jQuery(document).ready(function() {
+	$("img.lazy").lazyload(
+			{ data_attribute: "orig",
+				threshold : 200
+			});
 });
 </script>

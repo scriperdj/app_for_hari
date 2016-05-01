@@ -5,11 +5,19 @@ class AjokeController < ApplicationController
 
   def options
     @title = "Options"
-    @gallery = Gallery.find(1)
-    @pictures = @gallery.pictures.build
-    @image = Picture.where(:gallery_id => @gallery)
+    t = Gallery.arel_table
+    @gallery = Gallery.where((t[:name].eq("Wedding")).or(t[:name].eq("Reception")).or(t[:name].eq("Outdoor")))
+    # @pictures = @gallery.pictures.build
+    @image = Image.where(:gallery_id => @gallery)
     @photo = @image.order(created_at: :desc)
     @photos = @photo.paginate(:page => params[:page],:per_page => 6)
+
+  end
+
+  def upload_home_images
+    @title = "Upload photos"
+    t = Gallery.arel_table
+    @galleries = Gallery.where((t[:name].eq("Wedding")).or(t[:name].eq("Reception")).or(t[:name].eq("Outdoor")))
 
   end
 
@@ -87,6 +95,12 @@ class AjokeController < ApplicationController
     end
   end
 
+  def delete_image
+    image = Image.find(params["img"])
+    image.delete
+    render :json => {status => "ok"}
+  end
+
   def save_images
     p_attr = params[:image]
     #puts '>>>atrs=' + p_attr.to_s
@@ -113,10 +127,11 @@ class AjokeController < ApplicationController
   end
 
   def galleries
+    t = Gallery.arel_table
     @gallery = Gallery.new
     @title = "Galleries"
-    @gal = Gallery.where("id != 1")
-    @gals = @gal.order(created_at: :desc)
+    @gal = Gallery.where((t[:name].eq("Home")).or(t[:name].eq("Wedding")).or(t[:name].eq("Reception")).or(t[:name].eq("Outdoor")))
+    @gals = @gal.order(created_at: :asc)
     @galleries = @gals.paginate(:page => params[:page],:per_page => 6)
   end
 

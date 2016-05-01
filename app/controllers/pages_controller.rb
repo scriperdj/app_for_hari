@@ -2,13 +2,29 @@ class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:ajoke]
   skip_before_filter :verify_authenticity_token, only: [:contact, :album_request]
   def home
-    gallery = Gallery.find(1)
-    @pic = Picture.where(gallery_id: gallery).first
+    gallery = Gallery.where(:name => "Home")
+    @photos = Image.where(gallery_id: gallery).order(created_at: :desc)
     @title = "Home"
   end
 
   def gallery
     @title = "Gallery"
+    t = Gallery.arel_table
+    @galleries = Gallery.where((t[:name].eq("Wedding")).or(t[:name].eq("Reception")).or(t[:name].eq("Outdoor")))
+    @images = Image.where(:gallery_id => @galleries)
+    @photo = @images.order(created_at: :desc)
+    @photos = @photo.paginate(:page => params[:page],:per_page => 12)
+  end
+
+  def view_gallery
+    t = Gallery.arel_table
+    @galleries = Gallery.where((t[:name].eq("Wedding")).or(t[:name].eq("Reception")).or(t[:name].eq("Outdoor")))
+    @gallery = Gallery.find(params[:id])
+    @title = @gallery.name + " Gallery"
+    @images = Image.where(:gallery_id => @gallery)
+    @photo = @images.order(created_at: :desc)
+    @photos = @photo.paginate(:page => params[:page],:per_page => 12)
+    render :template => "pages/gallery"
   end
 
   def galleries

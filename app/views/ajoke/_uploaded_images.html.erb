@@ -2,11 +2,11 @@
 <% @photos.each do |photo| %>
   <figure class="gallery-item" style="position: absolute; left: 0px; top: 0px;">
     <header class='gallery-icon'>
-      <a ><img id="galimg" src="<%= photo.image.disp %>" alt="" /></a>
+      <a ><img class="galimg" src="<%= photo.image.disp %>" alt="" /></a>
     </header>
     <figcaption class='gallery-caption'>
       <div  class="entry-summary">
-        <p id='cover_img' data-id='<%= photo.id %>' ><a href="#" >Set as gallery cover</a></p>
+        <p class='cover_img' data-id='<%= photo.id %>' ><a href="#" >Delete image</a></p>
       </div>
     </figcaption>
   </figure>

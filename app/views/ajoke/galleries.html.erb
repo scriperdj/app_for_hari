@@ -1,61 +1,55 @@
 <div class="whistles whistles-toggle">
-					<h3 style="float:right;" class="whistle-title">Create new gallery</h3>
-					<div class="whistle-content" >
-            <form action="/ajoke/create_gallery" method="post" id="commentform" class="comment-form" novalidate>
-							<%= render 'layouts/error_messages', :object => @gallery %>
-                <div style="width:30%;float:left;padding-right:20px;">
-									<p class="comment-form-author">
-										<label for="name">Gallery Name <span class="required">*</span></label>
-										<input id="name" name="name" type="text" placeholder="e.g. Tanu weds Manu" size="20" required />
-									</p>
-                </div>
-                <div style="width:30%;float:left;">
-									<p class="comment-form-email">
-										<label for="date">Date of event <span class="required">*</span></label>
-										<input id="event_date" name="event_date" type="text" placeholder="Pick a date" size="30" required /></p>
-                </div>
-								<p class="form-submit" style="padding-top:35px;padding-left:20px;">
-									<input name="submit" type="submit" id="submit" value="Create" />
-								</p>
-						</form>
-          </div>
-</div>
-
-
-
-
-			<!-- Gallery __-->
-			<div style="text-align:center;padding:10px"> <%= will_paginate @galleries %> </div>
-			<div  class="gallery masonry-gallery">
-			<% @galleries.each do |gal| %>
-				<% unless gal.cover.nil?
-						pic = gal.images.find(gal.cover)
-					 else
-						pic = gal.images.last
-					 end %>
-
-			  <figure class="gallery-item" style="position: absolute; left: 0px; top: 0px;">
-			    <header class='gallery-icon'>
-			      <a href="<%=ajoke_upload_images_path %>?gallery=<%=gal.id %>" ><img id="galimg" data-id='<%= gal.id %>' src="<%= ( pic.nil? )? '/images/photography/default.jpg' : pic.image.disp %>" alt="" /></a>
-			    </header>
-			    <figcaption class='gallery-caption'>
-			      <div  class="entry-summary">
-			        <h3><%= gal.name %></h3>
-			        <p id='img'><%= gal.event_date %></p>
-			      </div>
-			    </figcaption>
-			  </figure>
-			<% end %>
-			<% if @galleries.length == 0 %>
-				<p style="text-align:center;">No Gallaries created yet. <p>
-			<% end%>
-
+	<h3 style="float:right;" class="whistle-title">Create new gallery</h3>
+	<div class="whistle-content" >
+		<form action="/ajoke/create_gallery" method="post" id="commentform" class="comment-form" novalidate>
+			<%= render 'layouts/error_messages', :object => @gallery %>
+			<div style="width:30%;float:left;padding-right:20px;">
+				<p class="comment-form-author">
+					<label for="name">Gallery Name <span class="required">*</span></label>
+					<input id="name" name="name" type="text" placeholder="e.g. Tanu weds Manu" size="20" required />
+				</p>
 			</div>
-			<div style="text-align:center;padding:10px"> <%= will_paginate @galleries %> </div>
+			<div style="width:30%;float:left;">
+				<p class="comment-form-email">
+					<label for="date">Date of event <span class="required">*</span></label>
+					<input id="event_date" name="event_date" type="text" placeholder="Pick a date" size="30" required /></p>
+				</div>
+				<p class="form-submit" style="padding-top:35px;padding-left:20px;">
+					<input name="submit" type="submit" id="submit" value="Create" />
+				</p>
+			</form>
+		</div>
+	</div>
+	<!-- Gallery __-->
+	<div style="text-align:center;padding:10px"> <%= will_paginate @galleries %> </div>
+	<div  class="gallery masonry-gallery">
+		<% @galleries.each do |gal| %>
+		<% unless gal.cover.nil?
+			pic = gal.images.find(gal.cover)
+		else
+			pic = gal.images.last
+		end %>
 
-      <!-- Javascripts ______________________________________-->
+		<figure class="gallery-item" style="position: absolute; left: 0px; top: 0px;">
+			<header class='gallery-icon'>
+				<a href="<%=ajoke_upload_images_path %>?gallery=<%=gal.id %>" ><img class="galimg" data-id='<%= gal.id %>' src="<%= ( pic.nil? )? '/images/photography/default.jpg' : pic.image.disp %>" alt="" /></a>
+			</header>
+			<figcaption class='gallery-caption'>
+				<div  class="entry-summary">
+					<h3><%= gal.name %></h3>
+					<p id='img'><%= gal.event_date %></p>
+				</div>
+			</figcaption>
+		</figure>
+		<% end %>
+		<% if @galleries.length == 0 %>
+			<p style="text-align:center;">No Gallaries created yet. <p>
+		<% end%>
 
+		</div>
+		<div style="text-align:center;padding:10px"> <%= will_paginate @galleries %> </div>
 
+<!-- Javascripts ______________________________________-->
 <script>
 $(function() {
   $('#event_date').datepicker();

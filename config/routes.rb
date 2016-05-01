@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   match '/ajoke/uploaded_images' => 'ajoke#uploaded_images', via: [:get]
   match '/ajoke/update_cov' => 'ajoke#update_cov', via: [:post]
   match '/ajoke/save_images', :to => 'ajoke#save_images', :via => [:post, :put]
+  match '/ajoke/upload_home' => 'ajoke#upload_home_images', via: [:get]
+  match '/ajoke/delete_image' => 'ajoke#delete_image', via: [:post]
 
   devise_for :users
 
@@ -50,11 +52,11 @@ Rails.application.routes.draw do
   match '/about', :to => 'pages#about', :via => [:get]
   match '/gallery', :to => 'pages#gallery', :via => [:get]
   match '/galleries', :to => 'pages#galleries', :via => [:get]
-  match '/view_gallery', :to => 'images#view_gallery', :via => [:get]
+  match '/view_gallery', :to => 'pages#view_gallery', :via => [:get]
   match '/packages', :to => 'pages#packages', :via => [:get]
   match '/contact', :to => 'pages#contact', :via => [:get, :post]
   match '/album_request', :to => 'pages#album_request', :via => [:get, :post]
-  match '/ajoke', :to => 'ajoke#options', :via => [:get]
+  match '/ajoke', :to => 'ajoke#galleries', :via => [:get]
   match '/ajoke/save_cover', :to => 'ajoke#save_cover', :via => [:post, :put]
 
 
