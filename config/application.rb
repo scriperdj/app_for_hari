@@ -23,7 +23,10 @@ module HariWeb
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
+    config.assets.precompile += [ 'application.js', 'admin.js', 'admin/events.js', 'admin/gallery.js', 'frontendgallery.js']
+
+    config.assets.precompile += [ 'application.css', 'admin.css','admin/events.css', 'admin/gallery.css', 'frontendgallery.css']
     config.active_job.queue_adapter = :delayed_job
   end
 end
