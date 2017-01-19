@@ -49,12 +49,10 @@ group :development, :test do
 end
 
 group :development do
-	gem 'rspec-rails', '~> 3.0'
 	gem 'faker', '1.4.3'
 end
 
 group :test do
-	gem 'rspec', '~> 3.0'
 	gem 'factory_girl_rails'
 	gem 'database_cleaner'
 	gem "capybara", "~> 2.2.0"
